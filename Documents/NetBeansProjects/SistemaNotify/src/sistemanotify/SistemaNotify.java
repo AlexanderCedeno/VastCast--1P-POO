@@ -72,6 +72,8 @@ public class SistemaNotify {
         for (Device pr:devices){
             System.out.println(pr.getDevice());
         }
-
+        for (Propiedad pro:propiedades){
+            System.out.println(pro.getNombre());
+        }
 }
 }
