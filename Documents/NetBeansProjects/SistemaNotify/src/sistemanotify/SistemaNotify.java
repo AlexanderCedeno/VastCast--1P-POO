@@ -54,9 +54,10 @@ public class SistemaNotify {
          for (String dataID : idDev) {
              Device deviceN= new Device(dataID);
              devices.add(deviceN);
+             propiedades.add(new Propiedad("CO"));
             datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id.split(",")[2]).forEach(id -> {
                 
-               propiedades.add(new Propiedad("CO"));
+
                 observations.add(new Observation(id));
 
             });
