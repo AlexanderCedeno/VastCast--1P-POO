@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @author Walter Mix
  */
 public class FilterCollector {
-    
+  
    /* public void filter(){
         
         
@@ -22,7 +22,7 @@ public class FilterCollector {
         
     }
     */
-    
+    //collectorId: Metodo establecido que recibe una lista de String y retorna una lista de ID
     public List<String> collectorId(List<String> datas){
         List<String> listRI = new ArrayList<>();
         for (String i : datas) {
@@ -30,6 +30,7 @@ public class FilterCollector {
             listRI.add(ides);
         }
         List<String> listIDu= new ArrayList<>();
+        //distinct: devuelve string sin repetirse
         return listIDu=listRI.stream().distinct().collect(Collectors.toList());
         
     }
