@@ -41,11 +41,14 @@ public class SistemaNotify {
     public static void main(String[] args) {
         // TODO code application logic here
         Archivo a = new Archivo();
+        String ruta="C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";
         //a.leerTxt("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv");
-        a.leerTxt("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt");
-        cabecera.add(a.Linea("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt"));
+        a.leerTxt(ruta);
         List<String> datas = a.getData();
         FilterCollector filter=new FilterCollector();
+        String entrada="temp";
+        int index=filter.searchLabel(a.Linea(ruta), cabecera, entrada);
+        
         
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
         List<String> idDev=new ArrayList<>();
@@ -57,8 +60,8 @@ public class SistemaNotify {
          for (String dataID : idDev) {
              Device deviceN= new Device(dataID);
              devices.add(deviceN);
-             propiedades.add(new Propiedad("CO"));
-            datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id.split(",")[2]).forEach(id -> {
+             propiedades.add(new Propiedad(entrada));
+            datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id.split(",")[index]).forEach(id -> {
                 
 
                 observations.add(new Observation(id));
@@ -72,7 +75,7 @@ public class SistemaNotify {
         for (Observation ob : observations) {
             System.out.println(ob.getValue());
         }
-  
+ 
         for (Device pr:devices){
             System.out.println(pr.getDevice());
         }
