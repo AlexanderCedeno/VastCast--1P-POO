@@ -60,12 +60,12 @@ public class SistemaNotify {
          for (String dataID : idDev) {
              Device deviceN= new Device(dataID);
              devices.add(deviceN);
-             propiedades.add(new Propiedad(entrada));
+             Propiedad property= new Propiedad(entrada);
+             propiedades.add(property);
             datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id.split(",")[index]).forEach(id -> {
                 
-
-                observations.add(new Observation(id));
-
+                Observation ob=new Observation(id);
+                property.realizarObs(ob);
             });
             a.IterO(datas, dataID);
 
@@ -80,6 +80,8 @@ public class SistemaNotify {
             System.out.println(pr.getDevice());
         }
         for (Propiedad pro:propiedades){
+            System.out.println("Contar");
+            System.out.println(pro.getArray());
             System.out.println(pro.getNombre());
         }
 }
