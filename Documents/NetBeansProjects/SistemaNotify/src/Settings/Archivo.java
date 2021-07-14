@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
-
+/**
+ * @author Kevin Valle
+ * @author Kevin Cedeno
+ */
 public class Archivo{
 private List<String> data= new ArrayList<>();
 public void leerTxt(String direccion){

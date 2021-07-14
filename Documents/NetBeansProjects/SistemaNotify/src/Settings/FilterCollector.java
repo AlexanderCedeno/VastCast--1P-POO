@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *
- * @author Walter Mix
+ * @author Kevin Valle
+ * @author Kevin Cedeno
  */
 public class FilterCollector {
   

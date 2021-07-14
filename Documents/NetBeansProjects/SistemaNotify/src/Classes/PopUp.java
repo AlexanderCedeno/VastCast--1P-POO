@@ -5,13 +5,13 @@
  */
 package Classes;
 
-/**
- *
- * @author Walter Mix
- */
+
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Kevin Valle
+ * @author Kevin Cedeno
+ */
 public abstract class PopUp{
 protected List<Propiedad> propiedades;
 protected String label;

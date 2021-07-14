@@ -2,7 +2,11 @@ package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @author Kevin Cedeno
+ * @author Kevin Valle
+ */
 public class Device {
 
     private String idDevice;

@@ -1,6 +1,10 @@
 package Classes;
 import java.util.ArrayList;
 import java.util.Scanner;
+/**
+ * @author Kevin Valle
+ * @author Kevin Cedeno
+ */
 public class PopUpObs extends PopUp{
 private String priority;
 private double valueMax;

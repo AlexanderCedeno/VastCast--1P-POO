@@ -2,7 +2,10 @@ package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Kevin Valle
+ * @author Kevin Cedeno
+ */
 public class Propiedad {
 
     private String nombre;
