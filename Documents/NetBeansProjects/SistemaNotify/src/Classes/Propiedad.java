@@ -32,6 +32,6 @@ public class Propiedad {
         for (Observation c : observaciones) {
             System.out.println(c.getValue());
         }
-
+        System.out.println("Esta es una prueba");
     }
 }
