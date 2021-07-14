@@ -59,8 +59,8 @@ while (it.hasNext()) {
 }  return l;
   }
 
-public  String Linea() throws FileNotFoundException, IOException  {
-   String fichero = "C:/data/text.txt";
+public  String Linea(String l) {
+   String fichero = l;
 try {
   FileReader fr = new FileReader(fichero);
   BufferedReader br = new BufferedReader(fr);
