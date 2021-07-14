@@ -46,7 +46,7 @@ String nombreArchivo = direccion;
 public List<String> getData(){
   return data;
 }
-
+//Itero: busca los elementos que se parecen y los elimina
 public List<String> IterO (List<String> l, String i){
   Iterator <String > it = l.iterator();
 while (it.hasNext()) {
@@ -67,7 +67,7 @@ try {
 
   String linea;
   while((linea = br.readLine()) != null)
-  return linea;
+  return linea.replace("\"", "");
   fr.close();
 
 
