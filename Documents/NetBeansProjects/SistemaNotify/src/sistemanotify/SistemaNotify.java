@@ -25,7 +25,7 @@ import Settings.Archivo;
 import Settings.FilterCollector;
 /**
  *
- * @author Kevin Cedeño
+ * @author Kevin Cedeno
  * @author Kevin Valle
  */
 public class SistemaNotify {
