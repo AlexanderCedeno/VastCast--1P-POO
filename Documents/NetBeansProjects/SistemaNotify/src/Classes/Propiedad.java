@@ -25,7 +25,7 @@ public class Propiedad {
 
     }
 
-    public List<Observation> getArray() {
+    public List<Observation> getObservations() {
 
         return observaciones;
     }

@@ -29,7 +29,7 @@ public void setPopUp(){
   for (Propiedad p: propiedades){
     if (p.getNombre().equals(label)){
           System.out.println("Observaciones para :"+ p.getNombre());
-      for (Observation o:p.getArray()){
+      for (Observation o:p.getObservations()){
         obs=Double.parseDouble(o.getValue());
         if (obs>valueMax){
           System.out.println(priority+" :"+ obs + " >" + valueMax);

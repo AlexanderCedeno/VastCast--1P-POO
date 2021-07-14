@@ -41,9 +41,9 @@ public class SistemaNotify {
     public static void main(String[] args) {
         // TODO code application logic here
         Archivo a = new Archivo();
-        String ruta="C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";
-        //a.leerTxt("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv");
+        String ruta="C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv";
         a.leerTxt(ruta);
+        //a.leerTxt(ruta);
         List<String> datas = a.getData();
         FilterCollector filter=new FilterCollector();
         String entrada="temp";
@@ -59,9 +59,9 @@ public class SistemaNotify {
         //Filtra las opciones dentro del csv
          for (String dataID : idDev) {
              Device deviceN= new Device(dataID);
-             devices.add(deviceN);
              Propiedad property= new Propiedad(entrada);
-             propiedades.add(property);
+             deviceN.evaluarProp(property);
+             devices.add(deviceN);
             datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id.split(",")[index]).forEach(id -> {
                 
                 Observation ob=new Observation(id);
@@ -78,11 +78,13 @@ public class SistemaNotify {
  
         for (Device pr:devices){
             System.out.println(pr.getDevice());
-        }
-        for (Propiedad pro:propiedades){
-            System.out.println("Contar");
-            System.out.println(pro.getArray());
+            pr.getProperty();
+                    for (Propiedad pro:pr.getProperty()){
             System.out.println(pro.getNombre());
+            System.out.println(pro.getObservations());
+
         }
+        }
+
 }
 }
