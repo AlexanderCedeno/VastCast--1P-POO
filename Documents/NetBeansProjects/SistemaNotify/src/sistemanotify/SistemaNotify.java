@@ -34,6 +34,7 @@ public class SistemaNotify {
     public static List<Observation> observations = new ArrayList<>();
     public static List<Device> devices = new ArrayList<>();
     public static List<Propiedad> propiedades=new ArrayList<>();
+    public static List<String> cabecera=new ArrayList<>();
     /**
      * @param args the command line arguments
      */
@@ -42,7 +43,7 @@ public class SistemaNotify {
         Archivo a = new Archivo();
         //a.leerTxt("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv");
         a.leerTxt("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt");
-        System.out.println(a.Linea("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt"));
+        cabecera.add(a.Linea("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt"));
         List<String> datas = a.getData();
         FilterCollector filter=new FilterCollector();
         
