@@ -21,7 +21,7 @@ String nombreArchivo = direccion;
 			bufferedReader = new BufferedReader(fileReader);
 
 			//StringBuilder stringBuilder = new StringBuilder("");
-			String linea=bufferedReader.readLine();
+			String linea=bufferedReader.readLine(); //permite escapar de la cabecera del archivo
 			while ((linea = bufferedReader.readLine()) != null) {
 				// Lee línea por línea, omitiendo los saltos de línea
 				//stringBuilder.append(linea + "\n");
