@@ -33,5 +33,6 @@ public class Propiedad {
             System.out.println(c.getValue());
         }
         System.out.println("Esta es una prueba");
+        System.out.println("Esta es otra prueba");
     }
 }
