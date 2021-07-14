@@ -8,6 +8,7 @@ package sistemanotify;
 import java.util.function.Predicate;
 import java.util.Collection;
 import java.util.stream.Collectors;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -41,6 +42,7 @@ public class SistemaNotify {
         Archivo a = new Archivo();
         //a.leerTxt("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv");
         a.leerTxt("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt");
+        System.out.println(a.Linea("C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt"));
         List<String> datas = a.getData();
         FilterCollector filter=new FilterCollector();
         
