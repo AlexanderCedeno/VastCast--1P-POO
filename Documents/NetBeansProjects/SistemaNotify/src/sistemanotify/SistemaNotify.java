@@ -71,7 +71,7 @@ public class SistemaNotify {
 
        }
 
-// System.out.println(observations.size());
+//verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
         for (Observation ob : observations) {
             System.out.println(ob.getValue());
         }
