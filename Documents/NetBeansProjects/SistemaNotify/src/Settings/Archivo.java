@@ -1,6 +1,7 @@
 package Settings;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,23 @@ while (it.hasNext()) {
 }  return l;
   }
 
+public  String Linea() throws FileNotFoundException, IOException  {
+   String fichero = "C:/data/text.txt";
+try {
+  FileReader fr = new FileReader(fichero);
+  BufferedReader br = new BufferedReader(fr);
+
+  String linea;
+  while((linea = br.readLine()) != null)
+  return linea;
+  fr.close();
+
+
+}
+catch(Exception e) {
+  System.out.println("Excepcion leyendo fichero "+ fichero + ": " + e);
+}
+return "";}
 
 
 }
