@@ -6,12 +6,17 @@ package Classes;
  */
 public class Observation {
     private String value;
-
-    public Observation(String v) {
+    private String date;
+    public Observation(String v,String d) {
         value = v;
+        date=d;
     }
 
-    public double getValue() {
-        return Double.parseDouble(value);
+    public String getValue() {
+        return value;
+    }
+    
+    public String getDate(){
+        return date;
     }
 }

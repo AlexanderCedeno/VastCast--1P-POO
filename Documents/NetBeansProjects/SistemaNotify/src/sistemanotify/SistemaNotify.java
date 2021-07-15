@@ -41,9 +41,9 @@ public class SistemaNotify {
     public static void main(String[] args) {
         // TODO code application logic here
         Archivo a = new Archivo();
-        String ruta="C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv";
+        String ruta="C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";
         a.leerTxt(ruta);
-        //a.leerTxt(ruta);
+        //a.leerTxt(ruta);iot_telemetry_data_new.csv
         List<String> datas = a.getData();
         FilterCollector filter=new FilterCollector();
         String entrada="temp";
@@ -62,9 +62,9 @@ public class SistemaNotify {
              Propiedad property= new Propiedad(entrada);
              deviceN.evaluarProp(property);
              devices.add(deviceN);
-            datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id.split(",")[index]).forEach(id -> {
+            datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id).forEach(id -> {
                 
-                Observation ob=new Observation(id);
+                Observation ob=new Observation(id.split(",")[index],id.split(",")[9]);
                 property.realizarObs(ob);
             });
             a.IterO(datas, dataID);
@@ -76,21 +76,19 @@ public class SistemaNotify {
             System.out.println(ob.getValue());
         }
  
-        for (Device pr:devices){
+      for (Device pr:devices){
             System.out.println(pr.getDevice());
             pr.getProperty();
             for (Propiedad pro:pr.getProperty()){
                 System.out.println(pro.getNombre());
                 PopUpObs popUp=new PopUpObs(pro.getNombre(),"Medio",28.0,22.6);
                 popUp.añadirProp(pro);
-                popUp.setPopUp("2");
+               // popUp.setPopUp("2");
                 PopUpObs popUpo=new PopUpObs(pro.getNombre(),"Peligro",29.0);
                 popUpo.añadirProp(pro);
                 popUpo.setPopUp("1");
-                
-
         }
         }
-
+        
 }
 }
