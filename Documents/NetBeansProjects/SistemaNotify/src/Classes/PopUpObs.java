@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 /**
  * @author Kevin Valle
  * @author Kevin Cedeno
+ * @author Gustavo Castro
  */
 public class PopUpObs extends PopUp{
 private String priority;
@@ -27,6 +28,11 @@ public PopUpObs(String l, String p, double vM){
   priority=p;
   valueMax=vM;
 }
+//constructor para booleanos
+public PopUpObs(String l,String p){
+    super(l);
+    priority=p;
+}
 
 @Override
 public List<Observation> setPopUp(String input){
@@ -39,19 +45,24 @@ public List<Observation> setPopUp(String input){
 
     }
     else if(input.equals("2")){
-         System.out.println(priority);
         for (Propiedad p:propiedades){
-        p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).collect(Collectors.toList());}
+        obj=p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).collect(Collectors.toList());}
     }
+    
     else if(input.equals("3")){
-        System.out.println(priority);
         for (Propiedad p:propiedades){
-        p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())<valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).collect(Collectors.toList());
-    }
-  
-};
-
-
+        obj=p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).collect(Collectors.toList());}
+        }
+    
+    else if(input.equals("t")){
+        for (Propiedad p:propiedades){
+        obj=p.getObservations().stream().filter(prop-> Boolean.parseBoolean(prop.getValue())==true).map(prop-> prop).collect(Collectors.toList());}
+        }
+    else if(input.equals("f")){
+        for (Propiedad p:propiedades){
+        obj=p.getObservations().stream().filter(prop-> Boolean.parseBoolean(prop.getValue())==false).map(prop-> prop).collect(Collectors.toList());}
+        } 
+    
 return obj;
 }
 
