@@ -28,6 +28,7 @@ import Settings.FilterCollector;
  *
  * @author Kevin Cedeno
  * @author Kevin Valle
+ * @author Gustavo Castro
  */
 public class SistemaNotify {
 
@@ -41,7 +42,7 @@ public class SistemaNotify {
     public static void main(String[] args) {
         // TODO code application logic here
         Archivo a = new Archivo();
-        String ruta="C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";
+        String ruta="C:\\Users\\USER\\Documents\\NetBeansProjects\\VastCast--1P-POO\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv";
         a.leerTxt(ruta);
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
         List<String> datas = a.getData();
@@ -83,7 +84,7 @@ public class SistemaNotify {
                 System.out.println(pro.getNombre());
                 PopUpObs popUp=new PopUpObs(pro.getNombre(),"Medio",28.0,22.6);
                 popUp.añadirProp(pro);
-               // popUp.setPopUp("2");
+                popUp.setPopUp("2");
                 PopUpObs popUpo=new PopUpObs(pro.getNombre(),"Peligro",29.0);
                 popUpo.añadirProp(pro);
                 popUpo.setPopUp("1");

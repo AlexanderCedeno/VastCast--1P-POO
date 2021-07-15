@@ -1,0 +1,27 @@
+package Classes;
+
+import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PopUpDev extends PopUp{
+    private String Id_Dev;
+    List<PopUpObs> xObs;
+
+    public PopUpDev(String Id_Dev) {
+        this.Id_Dev = Id_Dev;
+        xObs= new ArrayList<>();
+    }
+    
+    public void use_xObs(PopUpObs Obs){
+        xObs.add(Obs);
+    }
+    @Override
+    public void setPopUp(String input){
+        System.out.println("Hola");
+    }
+    
+}

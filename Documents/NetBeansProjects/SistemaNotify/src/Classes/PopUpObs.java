@@ -27,18 +27,26 @@ public PopUpObs(String l, String p, double vM){
   valueMax=vM;
 }
 
+@Override
 public void setPopUp(String input){
     if (input.equals("1")){
-        System.out.print(priority);
+        System.out.println(priority);
   for (Propiedad p:propiedades){
   p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMax).map(prop-> prop).forEach(prop->{
       System.out.println(prop.getValue());
   });}
     }
     else if(input.equals("2")){
-         System.out.print(priority);
+         System.out.println(priority);
         for (Propiedad p:propiedades){
         p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).forEach(prop->{
+        System.out.println(prop.getValue());
+  });}
+    }
+    else if(input.equals("3")){
+        System.out.println(priority);
+        for (Propiedad p:propiedades){
+        p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())<valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).forEach(prop->{
         System.out.println(prop.getValue());
   });}
     }
