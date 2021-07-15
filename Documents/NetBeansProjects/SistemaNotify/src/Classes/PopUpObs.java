@@ -31,14 +31,14 @@ public void setPopUp(String input){
     if (input.equals("1")){
         System.out.print(priority);
   for (Propiedad p:propiedades){
-  p.getObservations().stream().filter(prop-> prop.getValue()>valueMax).map(prop-> prop).forEach(prop->{
+  p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMax).map(prop-> prop).forEach(prop->{
       System.out.println(prop.getValue());
   });}
     }
     else if(input.equals("2")){
          System.out.print(priority);
         for (Propiedad p:propiedades){
-        p.getObservations().stream().filter(prop-> prop.getValue()>valueMin&&prop.getValue()<valueMax).map(prop-> prop).forEach(prop->{
+        p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).forEach(prop->{
         System.out.println(prop.getValue());
   });}
     }
