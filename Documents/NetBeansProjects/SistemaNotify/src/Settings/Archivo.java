@@ -58,7 +58,7 @@ while (it.hasNext()) {
 
 }  return l;
   }
-
+//Linea():Metodo usado para leer solo la cabecera 
 public  String Linea(String l) {
    String fichero = l;
 try {
@@ -67,7 +67,13 @@ try {
 
   String linea;
   while((linea = br.readLine()) != null)
+   
   return linea.replace("\"", "");
+      /*for (String i:linea.replace("\"", "").split(",")){
+        lista.add(i);
+ 
+        }*/
+
   fr.close();
 
 

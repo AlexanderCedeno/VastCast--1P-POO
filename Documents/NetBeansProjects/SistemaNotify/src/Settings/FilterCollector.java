@@ -35,11 +35,11 @@ public class FilterCollector {
         
     }
     
-    public int searchLabel(String linea, List<String> l,String s){
-        for (String i:linea.split(",")){
-            l.add(i);
-        }
-        return l.indexOf(s);
+    public int searchLabel( List<String> l,String s){
+
+       // l.remove(9);
+       // l.remove(0);
+        return l.indexOf(s)+2;
     }
     
 }

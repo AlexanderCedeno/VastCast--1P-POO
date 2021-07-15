@@ -21,9 +21,18 @@ public class PopUpDev extends PopUp{
     public void use_xObs(PopUpObs Obs){
         xObs.add(Obs);
     }
+    
+    public void registerDev(Device d){
+        devices.add(d);
+    }
+    
     @Override
     public void setPopUp(String input){
-        System.out.println("123 123 123");
+        for(Device d:devices){
+            for(Propiedad p:d.getProperty()){
+             System.out.println("hola");
+            }
+        }
     }
     
 }
