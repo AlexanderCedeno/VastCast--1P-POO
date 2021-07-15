@@ -9,9 +9,11 @@ import java.util.List;
 
 public class PopUpDev extends PopUp{
     private String Id_Dev;
+    List<Device> devices;
     List<PopUpObs> xObs;
 
-    public PopUpDev(String Id_Dev) {
+    public PopUpDev(String l,String Id_Dev) {
+        super(l);
         this.Id_Dev = Id_Dev;
         xObs= new ArrayList<>();
     }
