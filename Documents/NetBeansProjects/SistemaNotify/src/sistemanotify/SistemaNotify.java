@@ -42,52 +42,75 @@ public class SistemaNotify {
     public static void main(String[] args) {
         // TODO code application logic here
         Archivo a = new Archivo();
-        String ruta="C:\\Users\\USER\\Documents\\NetBeansProjects\\VastCast--1P-POO\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv";
-        a.leerTxt(ruta);
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
-        List<String> datas = a.getData();
+        String ruta="C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";
+        a.leerTxt(ruta);
+        List<String> datos = a.getData();
         FilterCollector filter=new FilterCollector();
-        String entrada="temp";
-        int index=filter.searchLabel(a.Linea(ruta), cabecera, entrada);
+        
+        
+        String labelss="temp";
+        for(String cab:a.Linea(ruta).split(",")){
+        cabecera.add(cab);}
+        cabecera.remove("device");
+        cabecera.remove("FECHA ");
+        cabecera.remove("NO TOMAR EN CUENTA  ");
+        
+        
+        //int index=filter.searchLabel(a.Linea(ruta), cabecera, labelss);
+        for(String labels:cabecera){
+        System.out.println(filter.searchLabel(cabecera,labels));}
+        System.out.println("Cabecera:" +cabecera);
+        
         
         
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
         List<String> idDev=new ArrayList<>();
-        idDev=filter.collectorId(datas);
-
+        idDev=filter.collectorId(datos);
         
+        System.out.println(idDev);
 
-        //Filtra las opciones dentro del csv
+        //Filtra las opciones dentro del csv y crea los dispositivos con sus respectivas propiedades y observaciones
+            
          for (String dataID : idDev) {
-             Device deviceN= new Device(dataID);
-             Propiedad property= new Propiedad(entrada);
+            Device deviceN= new Device(dataID);
+            for(String labels:cabecera){
+            Archivo a1=new Archivo();
+            a1.leerTxt(ruta);
+            List<String> datas = a1.getData();
+            int index=filter.searchLabel(cabecera, labels);
+             Propiedad property= new Propiedad(labels);
              deviceN.evaluarProp(property);
-             devices.add(deviceN);
+             
             datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id).forEach(id -> {
                 
                 Observation ob=new Observation(id.split(",")[index],id.split(",")[9]);
                 property.realizarObs(ob);
             });
-            a.IterO(datas, dataID);
-
+            a.IterO(datas, dataID);}
+            devices.add(deviceN);
        }
 
 //verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
-        for (Observation ob : observations) {
+       /* for (Observation ob : observations) {
             System.out.println(ob.getValue());
-        }
+        }*/
  
       for (Device pr:devices){
             System.out.println(pr.getDevice());
             pr.getProperty();
             for (Propiedad pro:pr.getProperty()){
                 System.out.println(pro.getNombre());
-                PopUpObs popUp=new PopUpObs(pro.getNombre(),"Medio",28.0,22.6);
+                for (Observation ob : pro.getObservations()) {
+                    System.out.println(ob.getValue());
+                        }
+                //System.out.println(pro.getObservations());
+                /*PopUpObs popUp=new PopUpObs(pro.getNombre(),"Medio",28.0,22.6);
                 popUp.añadirProp(pro);
                 popUp.setPopUp("2");
                 PopUpObs popUpo=new PopUpObs(pro.getNombre(),"Peligro",29.0);
                 popUpo.añadirProp(pro);
-                popUpo.setPopUp("1");
+                popUpo.setPopUp("1");*/
         }
         }
         
