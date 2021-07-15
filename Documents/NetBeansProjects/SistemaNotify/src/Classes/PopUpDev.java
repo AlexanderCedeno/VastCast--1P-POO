@@ -21,7 +21,7 @@ public class PopUpDev extends PopUp{
     }
     @Override
     public void setPopUp(String input){
-        System.out.println("Hola mundo");
+        System.out.println("123 123 123");
     }
     
 }
