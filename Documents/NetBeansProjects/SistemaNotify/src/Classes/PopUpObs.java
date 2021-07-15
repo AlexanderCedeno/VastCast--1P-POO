@@ -1,4 +1,5 @@
 package Classes;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -28,31 +29,31 @@ public PopUpObs(String l, String p, double vM){
 }
 
 @Override
-public void setPopUp(String input){
+public List<Observation> setPopUp(String input){
+    List<Observation> obj=null;
     if (input.equals("1")){
-        System.out.println(priority);
   for (Propiedad p:propiedades){
-  p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMax).map(prop-> prop).forEach(prop->{
-      System.out.println(prop.getValue());
-  });}
+   obj=p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMax).map(prop-> prop).collect(Collectors.toList());
+  return obj;  
+  }
+
     }
     else if(input.equals("2")){
          System.out.println(priority);
         for (Propiedad p:propiedades){
-        p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).forEach(prop->{
-        System.out.println(prop.getValue());
-  });}
+        p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())>valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).collect(Collectors.toList());}
     }
     else if(input.equals("3")){
         System.out.println(priority);
         for (Propiedad p:propiedades){
-        p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())<valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).forEach(prop->{
-        System.out.println(prop.getValue());
-  });}
+        p.getObservations().stream().filter(prop-> Double.parseDouble(prop.getValue())<valueMin&&Double.parseDouble(prop.getValue())<valueMax).map(prop-> prop).collect(Collectors.toList());
     }
   
-}
+};
 
+
+return obj;
+}
 
 
 }

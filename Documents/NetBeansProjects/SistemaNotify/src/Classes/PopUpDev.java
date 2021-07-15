@@ -27,12 +27,14 @@ public class PopUpDev extends PopUp{
     }
     
     @Override
-    public void setPopUp(String input){
+    public List<Observation> setPopUp(String input){
+        List<Observation> obj=null;
         for(Device d:devices){
             for(Propiedad p:d.getProperty()){
-             System.out.println("hola");
+            
             }
         }
+        return obj;
     }
     
 }

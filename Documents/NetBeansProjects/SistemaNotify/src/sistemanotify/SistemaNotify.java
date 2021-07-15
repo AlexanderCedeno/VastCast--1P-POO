@@ -49,7 +49,6 @@ public class SistemaNotify {
         FilterCollector filter=new FilterCollector();
         
         
-        String labelss="temp";
         for(String cab:a.Linea(ruta).split(",")){
         cabecera.add(cab);}
         cabecera.remove("device");
@@ -57,19 +56,13 @@ public class SistemaNotify {
         cabecera.remove("NO TOMAR EN CUENTA  ");
         
         
-        //int index=filter.searchLabel(a.Linea(ruta), cabecera, labelss);
-        for(String labels:cabecera){
-        System.out.println(filter.searchLabel(cabecera,labels));}
-        System.out.println("Cabecera:" +cabecera);
-        
-        
+ 
         
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
         List<String> idDev=new ArrayList<>();
         idDev=filter.collectorId(datos);
         
-        System.out.println(idDev);
-
+    
         //Filtra las opciones dentro del csv y crea los dispositivos con sus respectivas propiedades y observaciones
             
          for (String dataID : idDev) {
@@ -87,7 +80,7 @@ public class SistemaNotify {
                 Observation ob=new Observation(id.split(",")[index],id.split(",")[9]);
                 property.realizarObs(ob);
             });
-            a.IterO(datas, dataID);}
+            a1.IterO(datas, dataID);}
             devices.add(deviceN);
        }
 
@@ -100,17 +93,18 @@ public class SistemaNotify {
             System.out.println(pr.getDevice());
             pr.getProperty();
             for (Propiedad pro:pr.getProperty()){
-                System.out.println(pro.getNombre());
-                for (Observation ob : pro.getObservations()) {
-                    System.out.println(ob.getValue());
-                        }
+              //  System.out.println(pro.getNombre());
+            /* for (Observation ob : pro.getObservations()) {
+            System.out.println(ob.getValue()+" "+ob.getDate());}*/
+           
                 //System.out.println(pro.getObservations());
                 /*PopUpObs popUp=new PopUpObs(pro.getNombre(),"Medio",28.0,22.6);
                 popUp.añadirProp(pro);
-                popUp.setPopUp("2");
-                PopUpObs popUpo=new PopUpObs(pro.getNombre(),"Peligro",29.0);
+                popUp.setPopUp("2");*/
+                if (!pro.getNombre().equals("true")&&!pro.getNombre().equals("false")){
+                PopUpObs popUpo=new PopUpObs(pro.getNombre(),"Peligro",22.0);
                 popUpo.añadirProp(pro);
-                popUpo.setPopUp("1");*/
+                System.out.println(popUpo.setPopUp("1"));}
         }
         }
         
