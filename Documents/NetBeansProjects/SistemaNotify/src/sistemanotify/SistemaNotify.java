@@ -79,9 +79,15 @@ public class SistemaNotify {
         for (Device pr:devices){
             System.out.println(pr.getDevice());
             pr.getProperty();
-                    for (Propiedad pro:pr.getProperty()){
-            System.out.println(pro.getNombre());
-            System.out.println(pro.getObservations());
+            for (Propiedad pro:pr.getProperty()){
+                System.out.println(pro.getNombre());
+                PopUpObs popUp=new PopUpObs(pro.getNombre(),"Medio",28.0,22.6);
+                popUp.añadirProp(pro);
+                popUp.setPopUp("2");
+                PopUpObs popUpo=new PopUpObs(pro.getNombre(),"Peligro",29.0);
+                popUpo.añadirProp(pro);
+                popUpo.setPopUp("1");
+                
 
         }
         }

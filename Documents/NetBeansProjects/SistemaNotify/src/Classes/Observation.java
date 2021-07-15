@@ -11,7 +11,7 @@ public class Observation {
         value = v;
     }
 
-    public String getValue() {
-        return value;
+    public double getValue() {
+        return Double.parseDouble(value);
     }
 }

@@ -23,7 +23,7 @@ public PopUp(String l){
   propiedades= new ArrayList<>();
 }
 
-public abstract void setPopUp();
+public abstract void setPopUp(String input);
 
 public String getLabel(){
   return label;

@@ -1,6 +1,9 @@
 package Classes;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.Collection;
+import java.util.stream.Collectors;
 /**
  * @author Kevin Valle
  * @author Kevin Cedeno
@@ -24,19 +27,21 @@ public PopUpObs(String l, String p, double vM){
   valueMax=vM;
 }
 
-public void setPopUp(){
-  double obs=0;
-  for (Propiedad p: propiedades){
-    if (p.getNombre().equals(label)){
-          System.out.println("Observaciones para :"+ p.getNombre());
-      for (Observation o:p.getObservations()){
-        obs=Double.parseDouble(o.getValue());
-        if (obs>valueMax){
-          System.out.println(priority+" :"+ obs + " >" + valueMax);
-        }
-      }
+public void setPopUp(String input){
+    if (input.equals("1")){
+        System.out.print(priority);
+  for (Propiedad p:propiedades){
+  p.getObservations().stream().filter(prop-> prop.getValue()>valueMax).map(prop-> prop).forEach(prop->{
+      System.out.println(prop.getValue());
+  });}
     }
-  }
+    else if(input.equals("2")){
+         System.out.print(priority);
+        for (Propiedad p:propiedades){
+        p.getObservations().stream().filter(prop-> prop.getValue()>valueMin&&prop.getValue()<valueMax).map(prop-> prop).forEach(prop->{
+        System.out.println(prop.getValue());
+  });}
+    }
   
 }
 
