@@ -22,8 +22,9 @@ public class PopUpDev extends PopUp {
         super(l);
         this.Id_Dev = Id_Dev;
         xObs = new ArrayList<>();
+        devices=new ArrayList<>();
     }
-    //use_xObs: metodo que usa las notificaciones por observaciony las agrega a la lista xObs
+    //use_xObs: metodo que usa las notificaciones por observacion y las agrega a la lista xObs
     public void use_xObs(PopUpObs Obs) {
         xObs.add(Obs);
     }
@@ -31,13 +32,26 @@ public class PopUpDev extends PopUp {
     public void registerDev(Device d) {
         devices.add(d);
     }
+    
+    public String getIDName(){
+        return Id_Dev;
+    }
+    
+    
     //
     @Override
     public List<Observation> setPopUp() {
-        List<Observation> obj = null;
+        List<Observation> obj =new ArrayList<>();
         for (Device d : devices) {
             for (Propiedad p : d.getProperty()) {
+            xObs.stream().filter(pUp -> pUp.getLabel().equals(p.getNombre())).map(pUp -> pUp).forEach(pUp -> {
 
+                    pUp.addProp(p);
+                    for (Observation o:pUp.setPopUp()){
+                        obj.add(o);
+                    }
+                    
+                });
             }
         }
         return obj;
