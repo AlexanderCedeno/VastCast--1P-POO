@@ -41,5 +41,5 @@ public class FilterCollector {
        // l.remove(0);
         return l.indexOf(s)+2;
     }
-    
+       
 }
