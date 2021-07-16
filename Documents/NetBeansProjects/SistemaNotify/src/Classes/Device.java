@@ -2,6 +2,7 @@ package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author Kevin Cedeno
@@ -15,7 +16,7 @@ public class Device {
 
     public Device(String id) {
         idDevice = id;
-        propiedades=new ArrayList<>();
+        propiedades = new ArrayList<>();
     }
 
     public void evaluarProp(Propiedad p) {
@@ -25,7 +26,8 @@ public class Device {
     public String getDevice() {
         return idDevice;
     }
-    public List<Propiedad> getProperty(){
+
+    public List<Propiedad> getProperty() {
         return propiedades;
     }
 

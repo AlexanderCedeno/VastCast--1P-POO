@@ -24,6 +24,7 @@ import Classes.Device;
 //Importar desde el paquete Settings
 import Settings.Archivo;
 import Settings.FilterCollector;
+
 /**
  *
  * @author Kevin Cedeno
@@ -34,8 +35,9 @@ public class SistemaNotify {
 
     public static List<Observation> observations = new ArrayList<>();
     public static List<Device> devices = new ArrayList<>();
-    public static List<Propiedad> propiedades=new ArrayList<>();
-    public static List<String> cabecera=new ArrayList<>();
+    public static List<Propiedad> propiedades = new ArrayList<>();
+    public static List<String> cabecera = new ArrayList<>();
+
     /**
      * @param args the command line arguments
      */
@@ -43,74 +45,70 @@ public class SistemaNotify {
         // TODO code application logic here
         Archivo a = new Archivo();
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
-        String ruta="C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";
+        String ruta = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";
         a.leerTxt(ruta);
         List<String> datos = a.getData();
-        FilterCollector filter=new FilterCollector();
-        
-        
-        for(String cab:a.Linea(ruta).split(",")){
-        cabecera.add(cab);}
+        FilterCollector filter = new FilterCollector();
+
+        for (String cab : a.Linea(ruta).split(",")) {
+            cabecera.add(cab);
+        }
         cabecera.remove("device");
         cabecera.remove("FECHA ");
         cabecera.remove("NO TOMAR EN CUENTA  ");
-        
-        
- 
-        
+
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
-        List<String> idDev=new ArrayList<>();
-        idDev=filter.collectorId(datos);
-        
-    
+        List<String> idDev = new ArrayList<>();
+        idDev = filter.collectorId(datos);
+
         //Filtra las opciones dentro del csv y crea los dispositivos con sus respectivas propiedades y observaciones
-            
-         for (String dataID : idDev) {
-            Device deviceN= new Device(dataID);
-            for(String labels:cabecera){
-            Archivo a1=new Archivo();
-            a1.leerTxt(ruta);
-            List<String> datas = a1.getData();
-            int index=filter.searchLabel(cabecera, labels);
-             Propiedad property= new Propiedad(labels);
-             deviceN.evaluarProp(property);
-             
-            datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id).forEach(id -> {
-                
-                Observation ob=new Observation(id.split(",")[index],id.split(",")[9]);
-                property.realizarObs(ob);
-            });
-            a1.IterO(datas, dataID);}
+        for (String dataID : idDev) {
+            Device deviceN = new Device(dataID);
+            for (String labels : cabecera) {
+                Archivo a1 = new Archivo();
+                a1.leerTxt(ruta);
+                List<String> datas = a1.getData();
+                int index = filter.searchLabel(cabecera, labels);
+                Propiedad property = new Propiedad(labels);
+                deviceN.evaluarProp(property);
+
+                datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id).forEach(id -> {
+
+                    Observation ob = new Observation(id.split(",")[index], id.split(",")[9]);
+                    property.realizarObs(ob);
+                });
+                a1.IterO(datas, dataID);
+            }
             devices.add(deviceN);
-       }
+        }
 
 //verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
-       /* for (Observation ob : observations) {
+        /* for (Observation ob : observations) {
             System.out.println(ob.getValue());
         }*/
- 
-      for (Device pr:devices){
+        for (Device pr : devices) {
             System.out.println(pr.getDevice());
             pr.getProperty();
-            for (Propiedad pro:pr.getProperty()){
-              //  System.out.println(pro.getNombre());
-            /* for (Observation ob : pro.getObservations()) {
+            for (Propiedad pro : pr.getProperty()) {
+                //  System.out.println(pro.getNombre());
+                /* for (Observation ob : pro.getObservations()) {
             System.out.println(ob.getValue()+" "+ob.getDate());}*/
-           
+
                 //System.out.println(pro.getObservations());
-                if (pro.getNombre().equals("light")){
-                PopUpObs popUp=new PopUpObs(pro.getNombre(),"Peligro");
-                popUp.añadirProp(pro);
-                System.out.println(popUp.setPopUp("t"));}
-                if(pro.getNombre().equals("temp")){
-                if (!pro.getNombre().equals("light")&&!pro.getNombre().equals("motion")){
-                PopUpObs popUpo=new PopUpObs(pro.getNombre(),"Peligro",22.0);
-                popUpo.añadirProp(pro);
-                System.out.println(popUpo.setPopUp("1"))
-                
-                ;}}
+                if (pro.getNombre().equals("light")) {
+                    PopUpObs popUp = new PopUpObs(pro.getNombre(), "Peligro");
+                    popUp.añadirProp(pro);
+                    System.out.println(popUp.setPopUp("t"));
+                }
+                if (pro.getNombre().equals("temp")) {
+                    if (!pro.getNombre().equals("light") && !pro.getNombre().equals("motion")) {
+                        PopUpObs popUpo = new PopUpObs(pro.getNombre(), "Peligro", 22.0);
+                        popUpo.añadirProp(pro);
+                        System.out.println(popUpo.setPopUp("1"));
+                    }
+                }
+            }
         }
-        }
-        
-}
+
+    }
 }

@@ -1,4 +1,5 @@
 package Classes;
+
 /**
  *
  * @author Kevin Cedeno
@@ -6,18 +7,20 @@ package Classes;
  * @author Gustavo Castro
  */
 public class Observation {
+
     private String value;
     private String date;
-    public Observation(String v,String d) {
+
+    public Observation(String v, String d) {
         value = v;
-        date=d;
+        date = d;
     }
 
     public String getValue() {
         return value;
     }
-    
-    public String getDate(){
+
+    public String getDate() {
         return date;
     }
 }

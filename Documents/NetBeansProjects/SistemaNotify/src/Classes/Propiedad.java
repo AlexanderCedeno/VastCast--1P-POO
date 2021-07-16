@@ -2,6 +2,7 @@ package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * @author Kevin Valle
  * @author Kevin Cedeno
@@ -36,6 +37,6 @@ public class Propiedad {
         for (Observation c : observaciones) {
             System.out.println(c.getValue());
         }
-      
+
     }
 }

@@ -5,36 +5,38 @@
  */
 package Classes;
 
-
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * @author Kevin Valle
  * @author Kevin Cedeno
  * @author Gustavo Castro
  */
-public abstract class PopUp{
-protected List<Propiedad> propiedades;
-protected String label;
-protected boolean state;
+public abstract class PopUp {
 
-public PopUp(String l){
-  label=l;
-  state=true;
-  propiedades= new ArrayList<>();
-}
+    protected List<Propiedad> propiedades;
+    protected String label;
+    protected boolean state;
 
-public abstract List<Observation> setPopUp(String input);
+    public PopUp(String l) {
+        label = l;
+        state = true;
+        propiedades = new ArrayList<>();
+    }
 
-public String getLabel(){
-  return label;
-}
-public void añadirProp(Propiedad p){
-  propiedades.add(p);
-}
+    public abstract List<Observation> setPopUp(String input);
 
-public List<Propiedad> getListProp(){
-  return propiedades;
-}
+    public String getLabel() {
+        return label;
+    }
+
+    public void añadirProp(Propiedad p) {
+        propiedades.add(p);
+    }
+
+    public List<Propiedad> getListProp() {
+        return propiedades;
+    }
 
 }
