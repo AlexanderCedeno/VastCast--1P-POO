@@ -33,7 +33,7 @@ public class PopUpDev extends PopUp {
     }
     //
     @Override
-    public List<Observation> setPopUp(String input) {
+    public List<Observation> setPopUp() {
         List<Observation> obj = null;
         for (Device d : devices) {
             for (Propiedad p : d.getProperty()) {
