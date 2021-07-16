@@ -46,48 +46,26 @@ public class SistemaNotify {
         // TODO code application logic here
         Archivo a = new Archivo();
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
-        String ruta="";//Ruta para prueba compañeros
+        String ruta="C:\\Users\\kevin\\Documents\\NetBeansProjects\\VastCast--1P-POO\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba compañeros
         //String ruta = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba Cedeño
         a.leerTxt(ruta);
         List<String> datos = a.getData();
         FilterCollector filter = new FilterCollector();
-
+        
+        
+        /*
         for (String cab : a.Linea(ruta).split(",")) {
             cabecera.add(cab);
         }
         cabecera.remove("device");
         cabecera.remove("FECHA ");
         cabecera.remove("NO TOMAR EN CUENTA  ");
-
+        */
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
         DevGenerator dg = new DevGenerator();
+        dg.propertiesExtractor(a.Linea(ruta).split(","), cabecera);
         dg.createObject(datos, devices, filter, cabecera, ruta);
-        /*
-        List<String> idDev = new ArrayList<>();
-        idDev = filter.collectorId(datos);
 
-        //Filtra las opciones dentro del csv y crea los dispositivos con sus respectivas propiedades y observaciones
-        for (String dataID : idDev) {
-            Device deviceN = new Device(dataID);
-            for (String labels : cabecera) {
-                Archivo a1 = new Archivo();
-                a1.leerTxt(ruta);
-                List<String> datas = a1.getData();
-                int index = filter.searchLabel(cabecera, labels);
-                Propiedad property = new Propiedad(labels);
-                deviceN.evaluarProp(property);
-
-                datas.stream().filter(id -> id.split(",")[1].equals(dataID)).map(id -> id).forEach(id -> {
-
-                    Observation ob = new Observation(id.split(",")[index], id.split(",")[9]);
-                    property.realizarObs(ob);
-                });
-                a1.IterO(datas, dataID);
-            }
-            devices.add(deviceN);
-        }
-*/
-        
 //verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
         /* for (Observation ob : observations) {
             System.out.println(ob.getValue());
