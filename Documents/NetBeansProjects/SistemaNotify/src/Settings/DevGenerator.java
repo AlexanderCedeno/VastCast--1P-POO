@@ -19,6 +19,7 @@ import Settings.Archivo;
  */
 public class DevGenerator {
 
+    //createObject: Crea los Dispositivos a partir de los datos dados en el csv
     public void createObject(List<String> datos, List<Device> devices, FilterCollector filter, List<String> cabecera, String ruta) {
         List<String> idDev = new ArrayList<>();
         idDev = filter.collectorId(datos);
@@ -43,5 +44,15 @@ public class DevGenerator {
             }
             devices.add(deviceN);
         }
+    }
+    //propertiesExtractor: Extrae solo las propiedades a partir de la cabecera
+    public void propertiesExtractor(String[] linea, List<String> cabecera) {
+        for (String cab : linea) {
+            cabecera.add(cab);
+        }
+        cabecera.remove("device");
+        cabecera.remove("FECHA ");
+        cabecera.remove("NO TOMAR EN CUENTA  ");
+
     }
 }
