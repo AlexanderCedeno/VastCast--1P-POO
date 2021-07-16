@@ -65,7 +65,7 @@ public class SistemaNotify {
         /* for (Observation ob : observations) {
             System.out.println(ob.getValue());
         }*/
-        List<PopUpObs> xObs=new ArrayList<>();
+        /*List<PopUpObs> xObs=new ArrayList<>();
         xObs.add(new PopUpObs("temp", "Peligro", 22.0, "1"));
         xObs.add(new PopUpObs("light", "Peligro", "t"));
         List<PopUpDev> dev=new ArrayList<>();
@@ -78,30 +78,18 @@ public class SistemaNotify {
                 clasico.registerDev(pr);
                 clasico.use_xObs(obs);
                 System.out.println(clasico.setPopUp());
-            }
-            pr.getProperty();
-            for (Propiedad pro : pr.getProperty()) {
-                // System.out.println(pro.getNombre());
-                /* for (Observation ob : pro.getObservations()) {
-            System.out.println(ob.getValue()+" "+ob.getDate());}*/
-
-                //System.out.println(pro.getObservations());
-                
-                  
-                    //popUp.addProp(pro);
-                    //System.out.println(popUp.setPopUp());
-                
-                
-                    
-                    
-                    //popUpo.addProp(pro);
-                    //System.out.println(popUpo.setPopUp());
-                    
+            }                  
                 
             }
-        }
-        System.out.println("Esto es aparte: "+'\n'+xObs);
+        }*/
+        
+        User user1=new User("JuanFranciscoAlelio");
+        user1.createPopUp("motion");
+        for (PopUpObs po:user1.getPopUpObs()){
+        System.out.println(po.getLabel());
+        }        
+        /*System.out.println("Esto es aparte: "+'\n'+xObs);
         for (PopUpDev devi:dev){
-        System.out.println(devi.getLabel());}
+        System.out.println(devi.getLabel());}*/
     }
 }
