@@ -3,6 +3,7 @@ package Classes;
  *
  * @author Kevin Cedeno
  * @author Kevin Valle
+ * @author Gustavo Castro
  */
 public class Observation {
     private String value;

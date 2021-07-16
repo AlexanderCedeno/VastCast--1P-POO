@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * @author Kevin Valle
  * @author Kevin Cedeno
+ * @author Gustavo Castro
  */
 public abstract class PopUp{
 protected List<Propiedad> propiedades;

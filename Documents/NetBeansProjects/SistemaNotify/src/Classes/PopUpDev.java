@@ -6,7 +6,11 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Kevin Valle
+ * @author Kevin Cedeno
+ * @author Gustavo Castro
+ */
 public class PopUpDev extends PopUp{
     private String Id_Dev;
     List<Device> devices;

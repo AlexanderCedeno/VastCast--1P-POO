@@ -2,6 +2,7 @@ package Classes;
 /**
  * @author Kevin Valle
  * @author Kevin Cedeno
+ * @author Gustavo Castro
  */
 public class User {
 

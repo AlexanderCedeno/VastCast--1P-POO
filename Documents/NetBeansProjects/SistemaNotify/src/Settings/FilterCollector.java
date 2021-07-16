@@ -8,10 +8,10 @@ package Settings;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 /**
  * @author Kevin Valle
  * @author Kevin Cedeno
+ * @author Gustavo Castro
  */
 public class FilterCollector {
   

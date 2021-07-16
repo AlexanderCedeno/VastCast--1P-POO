@@ -9,6 +9,7 @@ import java.util.Iterator;
 /**
  * @author Kevin Valle
  * @author Kevin Cedeno
+ * @author Gustavo Castro
  */
 public class Archivo{
 private List<String> data= new ArrayList<>();
