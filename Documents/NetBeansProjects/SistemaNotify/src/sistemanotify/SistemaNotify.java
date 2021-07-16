@@ -98,13 +98,17 @@ public class SistemaNotify {
             System.out.println(ob.getValue()+" "+ob.getDate());}*/
            
                 //System.out.println(pro.getObservations());
-                /*PopUpObs popUp=new PopUpObs(pro.getNombre(),"Medio",28.0,22.6);
+                if (pro.getNombre().equals("light")){
+                PopUpObs popUp=new PopUpObs(pro.getNombre(),"Peligro");
                 popUp.añadirProp(pro);
-                popUp.setPopUp("2");*/
-                if (!pro.getNombre().equals("true")&&!pro.getNombre().equals("false")){
+                System.out.println(popUp.setPopUp("t"));}
+                if(pro.getNombre().equals("temp")){
+                if (!pro.getNombre().equals("light")&&!pro.getNombre().equals("motion")){
                 PopUpObs popUpo=new PopUpObs(pro.getNombre(),"Peligro",22.0);
                 popUpo.añadirProp(pro);
-                System.out.println(popUpo.setPopUp("1"));}
+                System.out.println(popUpo.setPopUp("1"))
+                
+                ;}}
         }
         }
         
