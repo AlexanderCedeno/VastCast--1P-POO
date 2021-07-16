@@ -20,7 +20,7 @@ public class PopUpObs extends PopUp {
     private String input;
     
 //sobrecarga de constructores
-//PopUpObs (1): constructor de 4 parametros que sera usado para crear notificaciones en un rango de maximos y minimos
+//PopUpObs (1): constructor de 5 parametros que sera usado para crear notificaciones en un rango de maximos y minimos
     public PopUpObs(String l, String p, double vM, double vMi, String input) {
         super(l);
         priority = p;
@@ -28,7 +28,7 @@ public class PopUpObs extends PopUp {
         valueMin = vMi;
         this.input=input;
     }
-//PopUpObs (2): constructor de 3 parametros que sera usado para comparar con un unico valor en las observaciones
+//PopUpObs (2): constructor de 4 parametros que sera usado para comparar con un unico valor en las observaciones
 
     public PopUpObs(String l, String p, double vM, String input) {
         super(l);
