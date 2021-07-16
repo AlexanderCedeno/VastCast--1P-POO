@@ -25,7 +25,7 @@ public abstract class PopUp {
         propiedades = new ArrayList<>();
     }
     //setPopUp: metodo abstracto para configurar los requerimientos del usuario
-    public abstract List<Observation> setPopUp(String input);
+    public abstract List<Observation> setPopUp();
 
     public String getLabel() {
         return label;
