@@ -21,6 +21,7 @@ import Classes.PopUpObs;
 import Classes.Propiedad;
 import Classes.User;
 import Classes.Device;
+import Classes.PopUpDev;
 //Importar desde el paquete Settings
 import Settings.Archivo;
 import Settings.FilterCollector;
@@ -64,29 +65,43 @@ public class SistemaNotify {
         /* for (Observation ob : observations) {
             System.out.println(ob.getValue());
         }*/
+        List<PopUpObs> xObs=new ArrayList<>();
+        xObs.add(new PopUpObs("temp", "Peligro", 22.0, "1"));
+        xObs.add(new PopUpObs("light", "Peligro", "t"));
+        List<PopUpDev> dev=new ArrayList<>();
         for (Device pr : devices) {
             System.out.println(pr.getDevice());
+            for (PopUpObs obs:xObs){
+                PopUpDev clasico=new PopUpDev(obs.getLabel(),pr.getDevice());
+                dev.add(clasico);
+                System.out.println(clasico.getLabel());
+                clasico.registerDev(pr);
+                clasico.use_xObs(obs);
+                System.out.println(clasico.setPopUp());
+            }
             pr.getProperty();
             for (Propiedad pro : pr.getProperty()) {
-                //  System.out.println(pro.getNombre());
+                // System.out.println(pro.getNombre());
                 /* for (Observation ob : pro.getObservations()) {
             System.out.println(ob.getValue()+" "+ob.getDate());}*/
 
                 //System.out.println(pro.getObservations());
-                if (pro.getNombre().equals("light")) {
-                    PopUpObs popUp = new PopUpObs(pro.getNombre(), "Peligro", "t");
-                    popUp.addProp(pro);
-                    System.out.println(popUp.setPopUp());
-                }
-                if (pro.getNombre().equals("temp")) {
-                    if (!pro.getNombre().equals("light") && !pro.getNombre().equals("motion")) {
-                        PopUpObs popUpo = new PopUpObs(pro.getNombre(), "Peligro", 22.0, "1");
-                        popUpo.addProp(pro);
-                        System.out.println(popUpo.setPopUp());
-                    }
-                }
+                
+                  
+                    //popUp.addProp(pro);
+                    //System.out.println(popUp.setPopUp());
+                
+                
+                    
+                    
+                    //popUpo.addProp(pro);
+                    //System.out.println(popUpo.setPopUp());
+                    
+                
             }
         }
-
+        System.out.println("Esto es aparte: "+'\n'+xObs);
+        for (PopUpDev devi:dev){
+        System.out.println(devi.getLabel());}
     }
 }
