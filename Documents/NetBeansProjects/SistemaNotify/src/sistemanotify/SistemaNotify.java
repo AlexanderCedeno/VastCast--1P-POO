@@ -88,8 +88,5 @@ public class SistemaNotify {
         for (PopUpObs po:user1.getPopUpObs()){
         System.out.println(po.getLabel());
         }        
-        /*System.out.println("Esto es aparte: "+'\n'+xObs);
-        for (PopUpDev devi:dev){
-        System.out.println(devi.getLabel());}*/
     }
 }
