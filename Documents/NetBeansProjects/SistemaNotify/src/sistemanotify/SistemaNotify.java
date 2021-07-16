@@ -24,6 +24,7 @@ import Classes.Device;
 //Importar desde el paquete Settings
 import Settings.Archivo;
 import Settings.FilterCollector;
+import Settings.DevGenerator;
 
 /**
  *
@@ -58,6 +59,9 @@ public class SistemaNotify {
         cabecera.remove("NO TOMAR EN CUENTA  ");
 
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
+        DevGenerator dg = new DevGenerator();
+        dg.createObject(datos, devices, filter, cabecera, ruta);
+        /*
         List<String> idDev = new ArrayList<>();
         idDev = filter.collectorId(datos);
 
@@ -81,7 +85,8 @@ public class SistemaNotify {
             }
             devices.add(deviceN);
         }
-
+*/
+        
 //verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
         /* for (Observation ob : observations) {
             System.out.println(ob.getValue());
