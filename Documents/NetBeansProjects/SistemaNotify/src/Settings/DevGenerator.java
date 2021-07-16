@@ -13,12 +13,13 @@ import Classes.Observation;
 import Settings.Archivo;
 
 /**
- *
- * @author kevin
+ * @author Kevin Valle
+ * @author Kevin Cedeno
+ * @author Gustavo Castro
  */
 public class DevGenerator {
 
-    public void createObject(List<String> datos, FilterCollector filter, List<String> cabecera, String ruta) {
+    public void createObject(List<String> datos, List<Device> devices, FilterCollector filter, List<String> cabecera, String ruta) {
         List<String> idDev = new ArrayList<>();
         idDev = filter.collectorId(datos);
 
@@ -38,7 +39,7 @@ public class DevGenerator {
                     Observation ob = new Observation(id.split(",")[index], id.split(",")[9]);
                     property.realizarObs(ob);
                 });
-                a.IterO(datas, dataID);
+                a1.IterO(datas, dataID);
             }
             devices.add(deviceN);
         }
