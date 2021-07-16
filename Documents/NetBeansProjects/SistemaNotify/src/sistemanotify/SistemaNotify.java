@@ -53,17 +53,12 @@ public class SistemaNotify {
         FilterCollector filter = new FilterCollector();
         
         
-        /*
-        for (String cab : a.Linea(ruta).split(",")) {
-            cabecera.add(cab);
-        }
-        cabecera.remove("device");
-        cabecera.remove("FECHA ");
-        cabecera.remove("NO TOMAR EN CUENTA  ");
-        */
+
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
         DevGenerator dg = new DevGenerator();
+        //Crea lista con las propiedades en la cabecera
         dg.propertiesExtractor(a.Linea(ruta).split(","), cabecera);
+        //Crea objetos a partir de la base de datos
         dg.createObject(datos, devices, filter, cabecera, ruta);
 
 //verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
