@@ -46,7 +46,8 @@ public class SistemaNotify {
         // TODO code application logic here
         Archivo a = new Archivo();
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
-        String ruta = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";
+        String ruta="";//Ruta para prueba compañeros
+        //String ruta = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba Cedeño
         a.leerTxt(ruta);
         List<String> datos = a.getData();
         FilterCollector filter = new FilterCollector();
