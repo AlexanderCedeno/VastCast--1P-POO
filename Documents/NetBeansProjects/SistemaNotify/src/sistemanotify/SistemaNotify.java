@@ -45,8 +45,8 @@ public class SistemaNotify {
     public static void main(String[] args) {
         Archivo a = new Archivo();
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
-        String ruta="C:\\Users\\kevin\\Documents\\NetBeansProjects\\VastCast--1P-POO\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba compañeros
-        //String ruta = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba Cedeño
+        //String ruta="C:\\Users\\kevin\\Documents\\NetBeansProjects\\VastCast--1P-POO\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba compañeros
+        String ruta = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba Cedeño
         a.leerTxt(ruta);
         List<String> datos = a.getData();
         FilterCollector filter = new FilterCollector();
@@ -74,15 +74,15 @@ public class SistemaNotify {
 
                 //System.out.println(pro.getObservations());
                 if (pro.getNombre().equals("light")) {
-                    PopUpObs popUp = new PopUpObs(pro.getNombre(), "Peligro");
+                    PopUpObs popUp = new PopUpObs(pro.getNombre(), "Peligro", "t");
                     popUp.addProp(pro);
-                    System.out.println(popUp.setPopUp("t"));
+                    System.out.println(popUp.setPopUp());
                 }
                 if (pro.getNombre().equals("temp")) {
                     if (!pro.getNombre().equals("light") && !pro.getNombre().equals("motion")) {
-                        PopUpObs popUpo = new PopUpObs(pro.getNombre(), "Peligro", 22.0);
+                        PopUpObs popUpo = new PopUpObs(pro.getNombre(), "Peligro", 22.0, "1");
                         popUpo.addProp(pro);
-                        System.out.println(popUpo.setPopUp("1"));
+                        System.out.println(popUpo.setPopUp());
                     }
                 }
             }
