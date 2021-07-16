@@ -17,28 +17,28 @@ public class PopUpObs extends PopUp {
     private String priority;
     private double valueMax;
     private double valueMin;
-
-//costructor para rangos
+//sobrecarga de constructores
+//PopUpObs (1): constructor de 4 parametros que sera usado para crear notificaciones en un rango de maximos y minimos
     public PopUpObs(String l, String p, double vM, double vMi) {
         super(l);
         priority = p;
         valueMax = vM;
         valueMin = vMi;
     }
-//constructor para valores mayores
+//PopUpObs (2): constructor de 3 parametros que sera usado para comparar con un unico valor en las observaciones
 
     public PopUpObs(String l, String p, double vM) {
         super(l);
         priority = p;
         valueMax = vM;
     }
-//constructor para booleanos
+//PopUpObs (3): constructor para las propiedades con datos booleanos (true/false)
 
     public PopUpObs(String l, String p) {
         super(l);
         priority = p;
     }
-
+//setPopUp: metodo que sirve para configurar las notificaciones y usa los valores dados por el usuario para comparar las observaciones
     @Override
     public List<Observation> setPopUp(String input) {
         List<Observation> obj = null;

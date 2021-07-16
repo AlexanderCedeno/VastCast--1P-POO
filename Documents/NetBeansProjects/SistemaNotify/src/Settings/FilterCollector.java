@@ -16,13 +16,6 @@ import java.util.stream.Collectors;
  */
 public class FilterCollector {
 
-    /* public void filter(){
-        
-        
-        
-        
-    }
-     */
     //collectorId: Metodo establecido que recibe una lista de String y retorna una lista de ID
     public List<String> collectorId(List<String> datas) {
         List<String> listRI = new ArrayList<>();
@@ -35,11 +28,8 @@ public class FilterCollector {
         return listIDu = listRI.stream().distinct().collect(Collectors.toList());
 
     }
-
+    //searchLabel: metodo que devuelve el indice de las propiedades
     public int searchLabel(List<String> l, String s) {
-
-        // l.remove(9);
-        // l.remove(0);
         return l.indexOf(s) + 2;
     }
 

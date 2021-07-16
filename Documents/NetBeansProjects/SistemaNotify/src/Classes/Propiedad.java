@@ -21,22 +21,14 @@ public class Propiedad {
     public String getNombre() {
         return nombre;
     }
-
+    //realizarObs: metodo que sirve para registrar las observaciones que realiza el dispostivo (agrega a la lista Propiedades las observaciones)
     public void realizarObs(Observation o) {
         observaciones.add(o);
 
     }
 
     public List<Observation> getObservations() {
-
         return observaciones;
     }
 
-    public void imprimirValor() {
-
-        for (Observation c : observaciones) {
-            System.out.println(c.getValue());
-        }
-
-    }
 }

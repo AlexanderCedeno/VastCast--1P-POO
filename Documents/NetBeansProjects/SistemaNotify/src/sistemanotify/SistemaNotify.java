@@ -43,7 +43,6 @@ public class SistemaNotify {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         Archivo a = new Archivo();
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
         String ruta="C:\\Users\\kevin\\Documents\\NetBeansProjects\\VastCast--1P-POO\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba compañeros
@@ -76,13 +75,13 @@ public class SistemaNotify {
                 //System.out.println(pro.getObservations());
                 if (pro.getNombre().equals("light")) {
                     PopUpObs popUp = new PopUpObs(pro.getNombre(), "Peligro");
-                    popUp.añadirProp(pro);
+                    popUp.addProp(pro);
                     System.out.println(popUp.setPopUp("t"));
                 }
                 if (pro.getNombre().equals("temp")) {
                     if (!pro.getNombre().equals("light") && !pro.getNombre().equals("motion")) {
                         PopUpObs popUpo = new PopUpObs(pro.getNombre(), "Peligro", 22.0);
-                        popUpo.añadirProp(pro);
+                        popUpo.addProp(pro);
                         System.out.println(popUpo.setPopUp("1"));
                     }
                 }

@@ -23,15 +23,15 @@ public class PopUpDev extends PopUp {
         this.Id_Dev = Id_Dev;
         xObs = new ArrayList<>();
     }
-
+    //use_xObs: metodo que usa las notificaciones por observaciony las agrega a la lista xObs
     public void use_xObs(PopUpObs Obs) {
         xObs.add(Obs);
     }
-
+    //registerDev: metodo que agrega los dispositivos registrados por el usuario
     public void registerDev(Device d) {
         devices.add(d);
     }
-
+    //
     @Override
     public List<Observation> setPopUp(String input) {
         List<Observation> obj = null;

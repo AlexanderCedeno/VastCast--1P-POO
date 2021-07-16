@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class Archivo {
 
     private List<String> data = new ArrayList<>();
-
+    //leerTxt: metodo que permite leer las lineas del archivo csv
     public void leerTxt(String direccion) {
         String nombreArchivo = direccion;
         FileReader fileReader = null;

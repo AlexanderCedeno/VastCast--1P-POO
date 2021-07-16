@@ -13,12 +13,12 @@ public class Device {
 
     private String idDevice;
     private List<Propiedad> propiedades;
-
+    
     public Device(String id) {
         idDevice = id;
         propiedades = new ArrayList<>();
     }
-
+    //evaluarProp: Agrega las propiedades a la lista de cada Dispositivo
     public void evaluarProp(Propiedad p) {
         propiedades.add(p);
     }

@@ -24,14 +24,14 @@ public abstract class PopUp {
         state = true;
         propiedades = new ArrayList<>();
     }
-
+    //setPopUp: metodo abstracto para configurar los requerimientos del usuario
     public abstract List<Observation> setPopUp(String input);
 
     public String getLabel() {
         return label;
     }
-
-    public void añadirProp(Propiedad p) {
+    //addProp: Agrega las propiedades a la lista de PopUp para luego aplicarles un seteo
+    public void addProp(Propiedad p) {
         propiedades.add(p);
     }
 
