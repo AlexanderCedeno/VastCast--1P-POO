@@ -47,7 +47,7 @@ public class User {
         Scanner sc = new Scanner(System.in);
         if (!l.equals("light") && !l.equals("motion")) {
             String opcion = "";
-            while (!opcion.equals("1") || !opcion.equals("2") || !opcion.equals("3")) {
+            while (!opcion.equals("salida")) {
                 System.out.println("Elija para que rangos desea configurar:");
                 System.out.println("1.-Para rangos: ValorObservacion > vMax");
                 System.out.println("2.Para rangos entre: vMin>ValorObservacion<vMax");
@@ -55,38 +55,68 @@ public class User {
 
                 System.out.print("Opcion:");
                 opcion = sc.nextLine();
-                String label = "";
-                double vMax = 0;
+                String priority = "";
+                double vMax;
                 double vMin = 0;
                 switch (opcion) {
 
                     case "1":
-                        System.out.print("Escriba una etiqueta(Ejmplo: Peligro): ");
-                        label = sc.nextLine();
+                        System.out.print("Escriba una Prioridad(Ejmplo: Peligro): ");
+                        priority = sc.nextLine();
                         System.out.print("Escriba el valor máximo: ");
-                        vMax = sc.nextInt();
-                        xObs.add(new PopUpObs(l, label, vMax, opcion));
+                        vMax = sc.nextDouble();
+                        xObs.add(new PopUpObs(l, priority, vMax, opcion));
+                        opcion="salida";
                         break;
                     case "2":
-                        System.out.print("Escriba una etiqueta(Ejmplo: Moderado): ");
-                        label = sc.nextLine();
+                        System.out.print("Escriba una Prioridad(Ejmplo: Moderado): ");
+                        priority = sc.nextLine();
                         System.out.print("Escriba el valor máximo: ");
                         vMax = sc.nextDouble();
                         System.out.print("Escriba el valor mínimo: ");
                         vMin = sc.nextDouble();
-                        xObs.add(new PopUpObs(l, label, vMax, vMin, opcion));
+                        xObs.add(new PopUpObs(l, priority, vMax, vMin, opcion));
+                        opcion="salida";
                         break;
                     case "3":
-                        System.out.print("Escriba una etiqueta(Ejmplo: Controlado): ");
-                        label = sc.nextLine();
+                        System.out.print("Escriba una Prioridad(Ejmplo: Controlado): ");
+                        priority = sc.nextLine();
                         System.out.print("Escriba el valor mínimo: ");
-                        vMin = sc.nextInt();
-                        xObs.add(new PopUpObs(l, label, vMin, opcion));
+                        vMin = sc.nextDouble();
+                        xObs.add(new PopUpObs(l, priority, vMin, opcion));
+                        opcion="salida";
                         break;
 
                 }
             }
 
+        }else if (l.equals("light")||l.equals("motion")){
+            String opcion = "";
+            while (!opcion.equals("salida")) {
+                System.out.println("Elija la opción que desea configurar(t)o(f):");
+                System.out.println("Escriba la letra t para las observaciones que sean TRUE");
+                System.out.println("Escriba la letra f Para las observaciones que sean FALSE");
+
+
+                System.out.print("Opcion:");
+                opcion = sc.nextLine();
+                String priority = "";
+                switch (opcion) {
+
+                    case "t":
+                        System.out.print("Escriba una Prioridad(Ejmplo: Peligro, Controlado, etc): ");
+                        priority = sc.nextLine();
+                        xObs.add(new PopUpObs(l, priority, opcion));
+                        opcion="salida";
+                        break;
+                    case "f":
+                        System.out.print("Escriba una Prioridad(Ejmplo: Controlado, Moderado, etc): ");
+                        priority = sc.nextLine();
+                        xObs.add(new PopUpObs(l, priority, opcion));
+                        opcion="salida";
+                        break;
+                }
+            }
         }
     }
 }
