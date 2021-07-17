@@ -47,13 +47,13 @@ public class PopUpDev extends PopUp {
         for (Device d : devices) {
             for (Propiedad p : d.getProperty()) {
             xObs.stream().filter(pUp -> pUp.getLabel().equals(p.getNombre())).map(pUp -> pUp).forEach(pUp -> {
-
+                    if(pUp.getState()==true){
                     pUp.addProp(p);
                     for (Observation o:pUp.setPopUp()){
                         obj.add(o);
                     }
                     pUp.setProp();
-                });
+            }});
             }
         }
         return obj;
