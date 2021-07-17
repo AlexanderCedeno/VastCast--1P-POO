@@ -179,6 +179,7 @@ public class Main {
         String r = scan.nextLine();
         if (r.equals("Y")) {
             String n = "";
+            usuario.createPopUpDev();
             while (!n.equals("N")) {
                 String evaluator = "";
                 while (!evaluator.equals("salir")) {
@@ -186,7 +187,7 @@ public class Main {
                     if (dev != null) {
                         usuario.enrollDev(dev);
                         evaluator = "salir";
-                        String put = "";
+                        String put = "";                       
                         while (!put.equals("N")) {
                             System.out.print("¿Desea configurar otro Dispositivo? Y/N:");
                             put = scan.nextLine();
