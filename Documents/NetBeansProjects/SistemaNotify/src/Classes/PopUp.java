@@ -34,6 +34,9 @@ public abstract class PopUp {
     public void addProp(Propiedad p) {
         propiedades.add(p);
     }
+    public void setProp(){
+        propiedades.clear();
+    }
 
     public List<Propiedad> getListProp() {
         return propiedades;
