@@ -94,7 +94,7 @@ public class SistemaNotify {
         for (PopUpObs po:user1.getPopUpObs()){
         System.out.println(po.getLabel());
         }*/
-        registerUser();
+        //registerUser();
 
         // System.out.println(usuario.getIDUser());
         // programmNotify();
@@ -114,8 +114,7 @@ public class SistemaNotify {
          */
 
     }
-
-    public static void menu() {
+ public static void menu() {
         String opcion = "";
         while (!opcion.equals("3")) {
             System.out.println("Sistema de notificación");
@@ -249,5 +248,6 @@ public class SistemaNotify {
 
         }
     }
+   
 
 }
