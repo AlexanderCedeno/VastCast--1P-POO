@@ -20,8 +20,8 @@ public class Writer {
     
     
     
-public static List<LocalDate> getRangeDates(LocalDate initDate, LocalDate endDate) {
-    return initDate.datesUntil(endDate).collect(Collectors.toList());
+public List<LocalDate> getRangeDates(LocalDate initDate, LocalDate endDate) {
+    return initDate.datesUntil(endDate.plusDays(1)).collect(Collectors.toList());
 }
     
 }
