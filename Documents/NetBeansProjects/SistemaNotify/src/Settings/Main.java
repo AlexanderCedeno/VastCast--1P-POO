@@ -256,12 +256,11 @@ public class Main {
 
     public void unablePopUp(User u) {
         String opcion = "";
-        while (!opcion.equals("3")) {
+        while (!opcion.equals("2")) {
             System.out.println("");
             System.out.println("***¿Cual notificacion desea desactivar?**");
             System.out.println("1.-Notificacion por Observacion");
-            System.out.println("2.-Notificaion por dispositivo");
-            System.out.println("3.-Ir atras");
+            System.out.println("2.-Ir atras");
 
             System.out.println("");
             System.out.print("Opcion:");
@@ -274,12 +273,13 @@ public class Main {
                         for (PopUpObs obs : u.getPopUpObs()) {
                             System.out.println(obs.getLabel());
                         }
-                        System.out.println("Escriba la etiqueta de la propiedad que desea desactivar:");
+                        System.out.println("Escriba la etiqueta de la notificacion que desea desactivar:");
                         String input = scan.nextLine();
                         for (PopUpObs obs : u.getPopUpObs()) {
                             if (obs.getLabel().equals(input)) {
-                                int index = u.getPopUpObs().indexOf(obs);
-                                u.getPopUpObs().remove(index);
+                                obs.setState(false);
+                            } else {
+                                System.out.println("Ya se ha desactivado la notificacion o ha ingresado mal la etiqueta");
                             }
                         }
                         System.out.println("Por favor vuelva a generar las notificacaciones.");
@@ -287,25 +287,6 @@ public class Main {
                         System.out.print("No cuenta con notificaciones activas");
                     }
 
-                    break;
-                case "2":
-                    if (u.getPopUpDev().size() > 0) {
-                        System.out.println("Ud cuenta con los siguientes dispositivos registrados:");
-                        for (Device dev : u.getDevicesRoll()) {
-                            System.out.println(dev.getDevice());
-                        }
-                        System.out.println("Escriba el ID-Device que desea desactivar:");
-                        String input = scan.nextLine();
-                        for (Device dev : u.getDevicesRoll()) {
-                            if (dev.getDevice().equals(input)) {
-                                int index = u.getPopUpObs().indexOf(dev);
-                                u.getPopUpObs().remove(index);
-                            }
-                        }
-                        System.out.println("Por favor vuelva a generar las notificacaciones.");
-                    } else {
-                        System.out.print("No cuenta con dispositivos registrados ");
-                    }
                     break;
 
             }
