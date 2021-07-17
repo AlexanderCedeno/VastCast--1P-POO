@@ -27,6 +27,7 @@ import Settings.FilterCollector;
 import Settings.DevGenerator;
 import Settings.Writer;
 import Settings.Main;
+import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -65,10 +66,30 @@ public class SistemaNotify {
         //Crea objetos a partir de la base de datos
         dg.createObject(datos, devices, filter, cabecera, ruta);
 
-       Main menu = new Main();
-       menu.menu(cabecera, devices);
-      rangeDates();
-
+       //Main menu = new Main();
+       //menu.menu(cabecera, devices);
+      //rangeDates();
+      
+      
+       try 
+          {    
+                FileWriter fw=new FileWriter("C:\\Users\\Walter Mix\\Desktop\\Examen\\usuarios.csv", true);    
+                fw.write(System.getProperty( "line.separator" ));
+                fw.write(" Welcome to javaTpointoooooooooooo."); 
+                fw.write(System.getProperty( "line.separator" ));
+                fw.write(" Prueba."); 
+                fw.close();    
+          }
+          catch(Exception e){System.out.println(e);}    
+          System.out.println("Success...");   
+       
+       Writer csvWrite=new Writer();
+       csvWrite.writeCsv();
+       
+       
+       
+       
+       
 //verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
         /* for (Observation ob : observations) {
             System.out.println(ob.getValue());
