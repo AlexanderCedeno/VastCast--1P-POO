@@ -14,13 +14,12 @@ import java.util.List;
  */
 public class PopUpDev extends PopUp {
 
-    private String Id_Dev;
+    
     List<Device> devices;
     List<PopUpObs> xObs;
 
-    public PopUpDev(String l, String Id_Dev) {
+    public PopUpDev(String l) {
         super(l);
-        this.Id_Dev = Id_Dev;
         xObs = new ArrayList<>();
         devices=new ArrayList<>();
     }
@@ -33,11 +32,8 @@ public class PopUpDev extends PopUp {
         devices.add(d);
     }
     
-    public String getIDName(){
-        return Id_Dev;
-    }
     
-    
+       
     //
     @Override
     public List<Observation> setPopUp() {
