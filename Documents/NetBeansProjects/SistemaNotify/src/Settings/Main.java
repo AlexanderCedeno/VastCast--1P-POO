@@ -258,7 +258,7 @@ public class Main {
         String opcion = "";
         while (!opcion.equals("2")) {
             System.out.println("");
-            System.out.println("***¿Cual notificacion desea desactivar?**");
+            System.out.println("***Menu desactivar notificacion**");
             System.out.println("1.-Notificacion por Observacion");
             System.out.println("2.-Ir atras");
 
@@ -282,11 +282,12 @@ public class Main {
                                 System.out.println("Ya se ha desactivado la notificacion o ha ingresado mal la etiqueta");
                             }
                         }
-                        System.out.println("Por favor vuelva a generar las notificacaciones.");
+                        System.out.println("Por favor vuelva a generar las notificaciones.");
+                    opcion="2";
                     } else {
                         System.out.print("No cuenta con notificaciones activas");
                     }
-
+                    
                     break;
 
             }
