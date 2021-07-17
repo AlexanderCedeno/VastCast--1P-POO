@@ -49,28 +49,30 @@ public class PopUpObs extends PopUp {
     @Override
     public List<Observation> setPopUp() {
         List<Observation> obj = null;
-        if (input.equals("1")) {
-            for (Propiedad p : propiedades) {
-                obj = p.getObservations().stream().filter(prop -> Double.parseDouble(prop.getValue()) > valueMax).map(prop -> prop).collect(Collectors.toList());
-                return obj;
-            }
-
-        } else if (input.equals("2")) {
-            for (Propiedad p : propiedades) {
-                obj = p.getObservations().stream().filter(prop -> Double.parseDouble(prop.getValue()) > valueMin && Double.parseDouble(prop.getValue()) < valueMax).map(prop -> prop).collect(Collectors.toList());
-            }
-        } else if (input.equals("3")) {
-            for (Propiedad p : propiedades) {
-                obj = p.getObservations().stream().filter(prop -> Double.parseDouble(prop.getValue()) < valueMax).map(prop -> prop).collect(Collectors.toList());
-            }
-        } else if (input.equals("t")) {
-            for (Propiedad p : propiedades) {
-                obj = p.getObservations().stream().filter(prop -> Boolean.parseBoolean(prop.getValue()) == true).map(prop -> prop).collect(Collectors.toList());
-            }
-        } else if (input.equals("f")) {
-            for (Propiedad p : propiedades) {
-                obj = p.getObservations().stream().filter(prop -> Boolean.parseBoolean(prop.getValue()) == false).map(prop -> prop).collect(Collectors.toList());
-            }
+        switch (input) {
+            case "1":
+                for (Propiedad p : propiedades) {
+                    obj = p.getObservations().stream().filter(prop -> Double.parseDouble(prop.getValue()) > valueMax).map(prop -> prop).collect(Collectors.toList());
+                    return obj;
+                }   break;
+            case "2":
+                for (Propiedad p : propiedades) {
+                    obj = p.getObservations().stream().filter(prop -> Double.parseDouble(prop.getValue()) > valueMin && Double.parseDouble(prop.getValue()) < valueMax).map(prop -> prop).collect(Collectors.toList());
+                }   break;
+            case "3":
+                for (Propiedad p : propiedades) {
+                    obj = p.getObservations().stream().filter(prop -> Double.parseDouble(prop.getValue()) < valueMax).map(prop -> prop).collect(Collectors.toList());
+                }   break;
+            case "t":
+                for (Propiedad p : propiedades) {
+                    obj = p.getObservations().stream().filter(prop -> Boolean.parseBoolean(prop.getValue()) == true).map(prop -> prop).collect(Collectors.toList());
+                }   break;
+            case "f":
+                for (Propiedad p : propiedades) {
+                    obj = p.getObservations().stream().filter(prop -> Boolean.parseBoolean(prop.getValue()) == false).map(prop -> prop).collect(Collectors.toList());
+                }   break;
+            default:
+                break;
         }
 
         return obj;
