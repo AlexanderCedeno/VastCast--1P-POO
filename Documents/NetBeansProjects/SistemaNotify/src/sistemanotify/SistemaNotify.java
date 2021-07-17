@@ -6,10 +6,6 @@
 package sistemanotify;
 
 import java.text.ParseException;
-import java.util.function.Predicate;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -30,6 +26,7 @@ import Settings.Archivo;
 import Settings.FilterCollector;
 import Settings.DevGenerator;
 import Settings.Writer;
+import Settings.Main;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -51,7 +48,7 @@ public class SistemaNotify {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         Archivo a = new Archivo();
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
@@ -67,6 +64,10 @@ public class SistemaNotify {
         dg.propertiesExtractor(a.Linea(ruta).split(","), cabecera);
         //Crea objetos a partir de la base de datos
         dg.createObject(datos, devices, filter, cabecera, ruta);
+
+       Main menu = new Main();
+       menu.menu(cabecera, devices);
+      rangeDates();
 
 //verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
         /* for (Observation ob : observations) {
@@ -95,159 +96,25 @@ public class SistemaNotify {
         System.out.println(po.getLabel());
         }*/
         //registerUser();
-
         // System.out.println(usuario.getIDUser());
         // programmNotify();
     }
 
     public static void rangeDates() throws ParseException {
-        /*SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
-        Date initDate=format.parse("10/05/2021");
-        Date endDate=format.parse("22/05/2021");
-        Date fechaA= new Date();
         Writer generator= new Writer();
-        LocalDate startLocalDate = initDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        System.out.println("Debe ingresar el rango de fechas con el siguiente formato dd/MM/yyyy");
+        System.out.print("Ingrese la fecha inicial dd/MM/yyyy: ");
+        Date initDate=format.parse(scan.nextLine());
+        System.out.print("Ingrese la fecha final dd/MM/yyyy: ");
+        Date endDate=format.parse(scan.nextLine());
+
+        LocalDate end = initDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate endLocalDate = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                System.out.println(startLocalDate);
-        List<LocalDate> dates=generator.getRangeDates(startLocalDate,endLocalDate);
+                System.out.println(end);
+        List<LocalDate> dates=generator.getRangeDates(end,endLocalDate);
         System.out.println(dates);
-         */
+         
 
     }
- public static void menu() {
-        String opcion = "";
-        while (!opcion.equals("3")) {
-            System.out.println("Sistema de notificación");
-            System.out.println("1.-Registrar Usuario");
-            System.out.println("2.-Iniciar Sesion");
-            System.out.println("3.-Salir");
-
-            System.out.print("Opcion:");
-            opcion = scan.nextLine();
-            switch (opcion) {
-                case "1":
-                    registerUser();
-                    break;
-                case "2":
-                    if (users.size() > 0) {
-                        logIn();
-                    } else {
-                        System.out.println("Lo sentimos, no hay usuarios registrados");
-                    }
-                    break;
-
-            }
-        }
-    }
-
-    public static Device inputDevice() {
-        System.out.print("Ingrese su dispositivo :");
-        String device = scan.nextLine();
-
-        for (Device dev : devices) {
-            if (dev.getDevice().equals(device)) {
-                return dev;
-            }
-        }
-        return null;
-    }
-
-    public static String inputProperty() {
-        System.out.print("Ingrese etiqueta de Propiedad. ('co','humidity', 'light', 'lpg', 'motion', 'smoke', 'temp )");
-        String label = scan.nextLine();
-
-        for (String p : cabecera) {
-            if (p.equals(label)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public static void registerUser() {
-        System.out.print("Ingrese id de usuario :");
-        String userID = scan.nextLine();
-
-        users.add(new User(userID));
-    }
-
-    public static User enterUser() {
-        System.out.print("Ingrese su nombre de usuario: ");
-        String nameUser = scan.nextLine();
-
-        for (User u : users) {
-            if (u.getIDUser().equals(nameUser)) {
-                return u;
-            }
-        }
-        return null;
-    }
-
-    public static void logIn() {
-        String i = "";
-        User usuario = new User("inicializar");
-        while (!i.equals("correcto")) {
-            usuario = enterUser();
-
-            if (usuario != null) {
-                i = "correcto";
-            } else {
-                i = "";
-                System.out.println("Nombre de usuario incorrecto, vuelva a intentarlo...");
-            }
-        }
-        String opcion = "";
-
-        while (!opcion.equals("4")) {
-
-            System.out.println("Sistema de notificación");
-            System.out.println("1.-Programar notificacion");
-            System.out.println("2.-Generar notificaciones");
-            System.out.println("3.-Desactivar notificaciones.");
-            System.out.println("4.-Cerrar sesion");
-
-            System.out.print("Opcion:");
-            opcion = scan.nextLine();
-
-            switch (opcion) {
-                case "1":
-                    programmNotify(usuario);
-                    break;
-                case "2":
-                    //retirar();
-                    break;
-                case "3":
-                    // retirar();
-                    break;
-
-            }
-        }
-    }
-
-    public static void programmNotify(User u) {
-
-        System.out.println("Notificaciones para el usuario: " + u.getIDUser());
-
-        String n = "";
-        while (!n.equals("N")) {
-
-            String evaluator = "";
-            while (!evaluator.equals("salida")) {
-                String label = inputProperty();
-                if (label != null) {
-                    u.createPopUp(label);
-                    System.out.println("Se creo su configuración para: ");
-                    evaluator = "salida";
-                    System.out.print("¿Desea configurar otra notificacion? Y/N:");
-                    n = scan.nextLine();
-                } else {
-                    evaluator = "no";
-                    System.out.println("No existe la propiedad. Vuelva a intentarlo ");
-                }
-            }
-
-        }
-    }
-   
-
 }
