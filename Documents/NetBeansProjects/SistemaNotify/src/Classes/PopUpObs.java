@@ -44,6 +44,10 @@ public class PopUpObs extends PopUp {
         this.input=input;
     }
     
+    public String getPriority(){
+        return priority;
+    }
+    
     
 //setPopUp: metodo que sirve para configurar las notificaciones y usa los valores dados por el usuario para comparar las observaciones
     @Override
