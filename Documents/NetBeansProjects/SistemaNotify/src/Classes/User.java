@@ -44,11 +44,12 @@ public class User {
     }
     
     public void createPopUpDev(){
+       
          for (PopUpObs obs:xObs){
-                PopUpDev clasico=new PopUpDev(obs.getLabel());            
+                PopUpDev clasico=new PopUpDev(obs.getLabel(), obs.getPriority());            
                 clasico.use_xObs(obs);
                 xDev.add(clasico);
-            }
+                }         
     }
     
     public void createPopUp(String l) {
