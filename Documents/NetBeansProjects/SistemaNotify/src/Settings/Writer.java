@@ -76,6 +76,7 @@ public class Writer {
                     }
 
                 }
+                System.out.println("Archivo creado :):):):):):)::))");
                 line.flush();
                 line.close();
             } else if (u.getDevicesRoll().isEmpty()) {
@@ -102,6 +103,7 @@ public class Writer {
                     }
 
                 }
+                System.out.println("Archivo creado :):):):):):)::))");
                 line.flush();
                 line.close();
             }
