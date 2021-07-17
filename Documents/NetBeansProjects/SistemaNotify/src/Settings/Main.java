@@ -7,6 +7,7 @@ package Settings;
 
 import Classes.Device;
 import Classes.User;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,8 +20,8 @@ public class Main {
 
     public Scanner scan = new Scanner(System.in);
     public List<User> users = new ArrayList<>();
-
-    public void menu(List<String> cabecera, List<Device> devices) {
+    Writer writeCSV=new Writer();
+    public void menu(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String opcion = "";
         while (!opcion.equals("3")) {
             System.out.println("");
@@ -38,7 +39,7 @@ public class Main {
                     break;
                 case "2":
                     if (users.size() > 0) {
-                        logIn(cabecera, devices);
+                        logIn(cabecera, devices,rutaWrite);
                     } else {
                         System.out.println("Lo sentimos, no hay usuarios registrados");
                     }
@@ -80,6 +81,8 @@ public class Main {
         System.out.println("******Se ha registrado su usuario correctamente *******");
     }
 
+    
+    
     public User enterUser() {
         System.out.print("Ingrese su nombre de usuario: ");
         String nameUser = scan.nextLine();
@@ -92,7 +95,10 @@ public class Main {
         return null;
     }
 
-    public void logIn(List<String> cabecera, List<Device> devices) {
+    
+    
+    
+    public void logIn(List<String> cabecera, List<Device> devices,String rutaWrite) throws ParseException {
         String i = "";
         User usuario = new User("inicializar");
         while (!i.equals("correcto")) {
@@ -107,6 +113,7 @@ public class Main {
         }
         String opcion = "";
 
+        
         while (!opcion.equals("4")) {
             System.out.println("");
             System.out.println("BIENVENIDO DE VUELTA..." + usuario.getIDUser());
@@ -125,7 +132,7 @@ public class Main {
                     enrollDevice(devices, usuario);
                     break;
                 case "2":
-                    //retirar();
+                    generatePopUp(usuario,devices,rutaWrite);
                     break;
                 case "3":
                     // retirar();
@@ -171,7 +178,6 @@ public class Main {
 
         }
     }
-//debe aceptar si enrolla o no los dispositivos
 
     public void enrollDevice(List<Device> devices, User usuario) {
         System.out.println("");
@@ -209,5 +215,10 @@ public class Main {
         } else {
             System.out.println("De acuerdo...No ha registrado ningun dispositivo");
         }
+    }
+    public void generatePopUp(User usuario, List<Device> devices, String rutaWrite) throws ParseException{
+        if (usuario.getPopUpObs().size()>0){
+        writeCSV.writeCsv(usuario, devices, rutaWrite);
+        }else {System.out.println("NO HA CONFIGURADO NOTIFICACIONES AÚN...");}
     }
 }
