@@ -61,7 +61,7 @@ public class User {
                 switch (opcion) {
 
                     case "1":
-                        System.out.print("Escriba una Prioridad(Ejmplo: Peligro): ");
+                        System.out.print("ESCRIBA UNA PRIORIDAD(Ejmplo: Peligro): ");
                         priority = sc.nextLine();
                         System.out.print("Escriba el valor máximo: ");
                         vMax = sc.nextDouble();
@@ -69,7 +69,7 @@ public class User {
                         opcion="salida";
                         break;
                     case "2":
-                        System.out.print("Escriba una Prioridad(Ejmplo: Moderado): ");
+                        System.out.print("ESCRIBA UNA PRIORIDAD(Ejmplo: Moderado): ");
                         priority = sc.nextLine();
                         System.out.print("Escriba el valor máximo: ");
                         vMax = sc.nextDouble();
@@ -79,7 +79,7 @@ public class User {
                         opcion="salida";
                         break;
                     case "3":
-                        System.out.print("Escriba una Prioridad(Ejmplo: Controlado): ");
+                        System.out.print("ESCRIBA UNA PRIORIDAD(Ejmplo: Controlado): ");
                         priority = sc.nextLine();
                         System.out.print("Escriba el valor mínimo: ");
                         vMin = sc.nextDouble();

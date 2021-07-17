@@ -18,11 +18,12 @@ import java.util.Scanner;
 public class Main {
 
     public Scanner scan = new Scanner(System.in);
-    public static List<User> users = new ArrayList<>();
+    public List<User> users = new ArrayList<>();
 
-    public void menu(List<String> cabecera) {
+    public void menu(List<String> cabecera, List<Device> devices) {
         String opcion = "";
         while (!opcion.equals("3")) {
+            System.out.println("");
             System.out.println("Sistema de notificación");
             System.out.println("1.-Registrar Usuario");
             System.out.println("2.-Iniciar Sesion");
@@ -30,13 +31,14 @@ public class Main {
 
             System.out.print("Opcion:");
             opcion = scan.nextLine();
+            System.out.println("");
             switch (opcion) {
                 case "1":
                     registerUser();
                     break;
                 case "2":
                     if (users.size() > 0) {
-                        logIn(cabecera);
+                        logIn(cabecera, devices);
                     } else {
                         System.out.println("Lo sentimos, no hay usuarios registrados");
                     }
@@ -75,6 +77,7 @@ public class Main {
         String userID = scan.nextLine();
 
         users.add(new User(userID));
+        System.out.println("******Se ha registrado su usuario correctamente *******");
     }
 
     public User enterUser() {
@@ -89,7 +92,7 @@ public class Main {
         return null;
     }
 
-    public void logIn(List<String> cabecera) {
+    public void logIn(List<String> cabecera, List<Device> devices) {
         String i = "";
         User usuario = new User("inicializar");
         while (!i.equals("correcto")) {
@@ -105,19 +108,21 @@ public class Main {
         String opcion = "";
 
         while (!opcion.equals("4")) {
-
-            System.out.println("Sistema de notificación");
+            System.out.println("");
+            System.out.println("BIENVENIDO DE VUELTA..." + usuario.getIDUser());
             System.out.println("1.-Programar notificacion");
             System.out.println("2.-Generar notificaciones");
             System.out.println("3.-Desactivar notificaciones.");
             System.out.println("4.-Cerrar sesion");
 
+            System.out.println("");
             System.out.print("Opcion:");
             opcion = scan.nextLine();
-
+            System.out.println("");
             switch (opcion) {
                 case "1":
                     programmNotify(usuario, cabecera);
+                    enrollDevice(devices, usuario);
                     break;
                 case "2":
                     //retirar();
@@ -131,9 +136,9 @@ public class Main {
     }
 
     public void programmNotify(User u, List<String> cabecera) {
-
+        System.out.println("");
         System.out.println("Notificaciones para el usuario: " + u.getIDUser());
-
+        System.out.println("");
         String n = "";
         while (!n.equals("N")) {
 
@@ -142,11 +147,23 @@ public class Main {
                 String label = inputProperty(cabecera);
                 if (label != null) {
                     u.createPopUp(label);
-                    System.out.println("Se creo su configuración para: ");
+                    System.out.println("Se creo su configuración para: " + label);
                     evaluator = "salida";
-                    System.out.print("¿Desea configurar otra notificacion? Y/N:");
-                    n = scan.nextLine();
+                    String put = "";
+                    while (!put.equals("N")) {
+                        System.out.print("¿Desea configurar otra notificacion? Y/N:");
+                        put = scan.nextLine();
+                        if (put.equals("Y")) {
+                            put = "N";
+                            n = "no";
+                        } else if (put.equals("N")) {
+                            n = "N";
+                        } else {
+                            System.out.println("Entrada equivocada...");
+                        }
+                    }
                 } else {
+
                     evaluator = "no";
                     System.out.println("No existe la propiedad. Vuelva a intentarlo ");
                 }
@@ -154,23 +171,42 @@ public class Main {
 
         }
     }
+//debe aceptar si enrolla o no los dispositivos
 
     public void enrollDevice(List<Device> devices, User usuario) {
-        String n = "";
-        while (!n.equals("N")) {
-            String evaluator = "";
-            while (!evaluator.equals("salir")) {
-                Device dev = inputDevice(devices);
-                if (dev != null) {
-                    usuario.enrollDev(dev);
-                    evaluator = "salir";
-                    System.out.print("¿Desea configurar otro Dispositivo? Y/N:");
-                    n = scan.nextLine();
-                } else {
-                    evaluator = "no";
-                    System.out.println("No existe el dispositivo. Vuelva a intentarlo ");
+        System.out.println("");
+        System.out.println("¿Desea registrar dispositivos en su cuenta? Y/N");
+        String r = scan.nextLine();
+        if (r.equals("Y")) {
+            String n = "";
+            while (!n.equals("N")) {
+                String evaluator = "";
+                while (!evaluator.equals("salir")) {
+                    Device dev = inputDevice(devices);
+                    if (dev != null) {
+                        usuario.enrollDev(dev);
+                        evaluator = "salir";
+                        String put = "";
+                        while (!put.equals("N")) {
+                            System.out.print("¿Desea configurar otro Dispositivo? Y/N:");
+                            put = scan.nextLine();
+                            if (put.equals("Y")) {
+                                put = "N";
+                                n = "no";
+                            } else if (put.equals("N")) {
+                                n = "N";
+                            } else {
+                                System.out.println("Entrada no valida...");
+                            }
+                        }
+                    } else {
+                        evaluator = "no";
+                        System.out.println("No existe el dispositivo. Vuelva a intentarlo ");
+                    }
                 }
             }
+        } else {
+            System.out.println("De acuerdo...No ha registrado ningun dispositivo");
         }
     }
 }
