@@ -6,6 +6,8 @@
 package Settings;
 
 import Classes.Device;
+import Classes.PopUpDev;
+import Classes.PopUpObs;
 import Classes.User;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -20,7 +22,8 @@ public class Main {
 
     public Scanner scan = new Scanner(System.in);
     public List<User> users = new ArrayList<>();
-    Writer writeCSV=new Writer();
+    Writer writeCSV = new Writer();
+
     public void menu(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String opcion = "";
         while (!opcion.equals("3")) {
@@ -39,7 +42,7 @@ public class Main {
                     break;
                 case "2":
                     if (users.size() > 0) {
-                        logIn(cabecera, devices,rutaWrite);
+                        logIn(cabecera, devices, rutaWrite);
                     } else {
                         System.out.println("Lo sentimos, no hay usuarios registrados");
                     }
@@ -81,8 +84,6 @@ public class Main {
         System.out.println("******Se ha registrado su usuario correctamente *******");
     }
 
-    
-    
     public User enterUser() {
         System.out.print("Ingrese su nombre de usuario: ");
         String nameUser = scan.nextLine();
@@ -95,10 +96,7 @@ public class Main {
         return null;
     }
 
-    
-    
-    
-    public void logIn(List<String> cabecera, List<Device> devices,String rutaWrite) throws ParseException {
+    public void logIn(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String i = "";
         User usuario = new User("inicializar");
         while (!i.equals("correcto")) {
@@ -113,7 +111,6 @@ public class Main {
         }
         String opcion = "";
 
-        
         while (!opcion.equals("4")) {
             System.out.println("");
             System.out.println("BIENVENIDO DE VUELTA..." + usuario.getIDUser());
@@ -128,21 +125,20 @@ public class Main {
             System.out.println("");
             switch (opcion) {
                 case "1":
-                    programmNotify(usuario, cabecera);
-                    enrollDevice(devices, usuario);
+                    programmPop(usuario, cabecera, devices);
                     break;
                 case "2":
-                    generatePopUp(usuario,devices,rutaWrite);
+                    generatePopUp(usuario, devices, rutaWrite);
                     break;
                 case "3":
-                    // retirar();
+                    unablePopUp(usuario);
                     break;
 
             }
         }
     }
 
-    public void programmNotify(User u, List<String> cabecera) {
+    public void setPop(User u, List<String> cabecera) {
         System.out.println("");
         System.out.println("Notificaciones para el usuario: " + u.getIDUser());
         System.out.println("");
@@ -193,7 +189,7 @@ public class Main {
                     if (dev != null) {
                         usuario.enrollDev(dev);
                         evaluator = "salir";
-                        String put = "";                       
+                        String put = "";
                         while (!put.equals("N")) {
                             System.out.print("¿Desea configurar otro Dispositivo? Y/N:");
                             put = scan.nextLine();
@@ -216,9 +212,103 @@ public class Main {
             System.out.println("De acuerdo...No ha registrado ningun dispositivo");
         }
     }
-    public void generatePopUp(User usuario, List<Device> devices, String rutaWrite) throws ParseException{
-        if (usuario.getPopUpObs().size()>0){
-        writeCSV.writeCsv(usuario, devices, rutaWrite);
-        }else {System.out.println("NO HA CONFIGURADO NOTIFICACIONES AÚN...");}
+
+    public void generatePopUp(User usuario, List<Device> devices, String rutaWrite) throws ParseException {
+        if (usuario.getPopUpObs().size() > 0) {
+            writeCSV.writeCsv(usuario, devices, rutaWrite);
+        } else {
+            System.out.println("NO HA CONFIGURADO NOTIFICACIONES AÚN...");
+        }
+    }
+
+    public void programmPop(User u, List<String> cabecera, List<Device> devices) {
+        String opcion = "";
+        while (!opcion.equals("3")) {
+            System.out.println("");
+            System.out.println("***Elija el tipo de notificacion**");
+            System.out.println("1.-Notificacion por Observacion");
+            System.out.println("2.-Notificaion por dispositivo");
+            System.out.println("3.-Ir atras");
+
+            System.out.println("");
+            System.out.print("Opcion:");
+            opcion = scan.nextLine();
+            System.out.println("");
+            switch (opcion) {
+                case "1":
+
+                    setPop(u, cabecera);
+
+                    break;
+                case "2":
+                    if (u.getPopUpObs().size() > 0) {
+
+                        enrollDevice(devices, u);
+
+                    } else {
+                        System.out.print("Debe configurar notificaciones por observacion antes: ");
+                    }
+                    break;
+
+            }
+        }
+    }
+
+    public void unablePopUp(User u) {
+        String opcion = "";
+        while (!opcion.equals("3")) {
+            System.out.println("");
+            System.out.println("***¿Cual notificacion desea desactivar?**");
+            System.out.println("1.-Notificacion por Observacion");
+            System.out.println("2.-Notificaion por dispositivo");
+            System.out.println("3.-Ir atras");
+
+            System.out.println("");
+            System.out.print("Opcion:");
+            opcion = scan.nextLine();
+            System.out.println("");
+            switch (opcion) {
+                case "1":
+                    if (u.getPopUpObs().size() > 0) {
+                        System.out.println("Ud cuenta con las siguientes notificaciones:");
+                        for (PopUpObs obs : u.getPopUpObs()) {
+                            System.out.println(obs.getLabel());
+                        }
+                        System.out.println("Escriba la etiqueta de la propiedad que desea desactivar:");
+                        String input = scan.nextLine();
+                        for (PopUpObs obs : u.getPopUpObs()) {
+                            if (obs.getLabel().equals(input)) {
+                                int index = u.getPopUpObs().indexOf(obs);
+                                u.getPopUpObs().remove(index);
+                            }
+                        }
+                        System.out.println("Por favor vuelva a generar las notificacaciones.");
+                    } else {
+                        System.out.print("No cuenta con notificaciones activas");
+                    }
+
+                    break;
+                case "2":
+                    if (u.getPopUpDev().size() > 0) {
+                        System.out.println("Ud cuenta con los siguientes dispositivos registrados:");
+                        for (Device dev : u.getDevicesRoll()) {
+                            System.out.println(dev.getDevice());
+                        }
+                        System.out.println("Escriba el ID-Device que desea desactivar:");
+                        String input = scan.nextLine();
+                        for (Device dev : u.getDevicesRoll()) {
+                            if (dev.getDevice().equals(input)) {
+                                int index = u.getPopUpObs().indexOf(dev);
+                                u.getPopUpObs().remove(index);
+                            }
+                        }
+                        System.out.println("Por favor vuelva a generar las notificacaciones.");
+                    } else {
+                        System.out.print("No cuenta con dispositivos registrados ");
+                    }
+                    break;
+
+            }
+        }
     }
 }
