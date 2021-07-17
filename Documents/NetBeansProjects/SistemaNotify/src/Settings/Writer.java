@@ -85,6 +85,7 @@ public class Writer {
                     line.printf("%-10s  %-1s%n ", "ID de dispositivo:", d.getDevice());
                     for (Propiedad p : d.getProperty()) {
                         u.getPopUpObs().stream().filter(Obs -> Obs.getLabel().equals(p.getNombre())).map(Obs -> Obs).forEach(Obs -> {
+                            if(Obs.getState()==true){
                             line.write(System.getProperty("line.separator"));
                             line.println("Observaciones para: " + Obs.getLabel());
                             Obs.addProp(p);
@@ -99,7 +100,7 @@ public class Writer {
                                 line.println("NO SE HAN ENCONTRADO VALORES EN LOS RANGOS SOLICITADOS...");
                             }
                             Obs.setProp();
-                        });
+                        }});
                     }
 
                 }
