@@ -95,9 +95,9 @@ public class SistemaNotify {
         System.out.println(po.getLabel());
         }*/
         registerUser();
-        System.out.println(users);
-        programmNotify();
 
+        // System.out.println(usuario.getIDUser());
+        // programmNotify();
     }
 
     public static void rangeDates() throws ParseException {
@@ -115,30 +115,32 @@ public class SistemaNotify {
 
     }
 
-    /* public static void menu(){
-        String opcion="";  
-    while(!opcion.equals("4")){
-    System.out.println("Sistema de notificación");
-    System.out.println("1.-Registrar Usuario");
-    System.out.println("2.-Iniciar Sesion");
-    System.out.println("4.-Salir");
-    
-    System.out.print("Opcion:");
-    opcion = scan.nextLine();
-    switch(opcion){
-      case "1":
-        depositar();
-        break;
-      case "2":
-        retirar();
-        break;
-        case "3":
-        retirar();
-        break;
+    public static void menu() {
+        String opcion = "";
+        while (!opcion.equals("3")) {
+            System.out.println("Sistema de notificación");
+            System.out.println("1.-Registrar Usuario");
+            System.out.println("2.-Iniciar Sesion");
+            System.out.println("3.-Salir");
 
+            System.out.print("Opcion:");
+            opcion = scan.nextLine();
+            switch (opcion) {
+                case "1":
+                    registerUser();
+                    break;
+                case "2":
+                    if (users.size() > 0) {
+                        logIn();
+                    } else {
+                        System.out.println("Lo sentimos, no hay usuarios registrados");
+                    }
+                    break;
+
+            }
+        }
     }
-    }
-    }*/
+
     public static Device inputDevice() {
         System.out.print("Ingrese su dispositivo :");
         String device = scan.nextLine();
@@ -170,19 +172,47 @@ public class SistemaNotify {
         users.add(new User(userID));
     }
 
+    public static User enterUser() {
+        System.out.print("Ingrese su nombre de usuario: ");
+        String nameUser = scan.nextLine();
+
+        for (User u : users) {
+            if (u.getIDUser().equals(nameUser)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public static void logIn() {
+        String i = "";
+        User usuario = new User("inicializar");
+        while (!i.equals("correcto")) {
+            usuario = enterUser();
+
+            if (usuario != null) {
+                i = "correcto";
+            } else {
+                i = "";
+                System.out.println("Nombre de usuario incorrecto, vuelva a intentarlo...");
+            }
+        }
         String opcion = "";
+
         while (!opcion.equals("4")) {
+
             System.out.println("Sistema de notificación");
             System.out.println("1.-Programar notificacion");
             System.out.println("2.-Generar notificaciones");
             System.out.println("3.-Desactivar notificaciones.");
+            System.out.println("4.-Cerrar sesion");
 
             System.out.print("Opcion:");
             opcion = scan.nextLine();
+
             switch (opcion) {
                 case "1":
-                    programmNotify();
+                    programmNotify(usuario);
                     break;
                 case "2":
                     //retirar();
@@ -195,29 +225,28 @@ public class SistemaNotify {
         }
     }
 
-    public static void programmNotify() {
+    public static void programmNotify(User u) {
 
-        for (User u : users) {
-            System.out.println("Notificaciones para el usuario: " + u.getIDUser());
-            
-            String n = "";
-            while (!n.equals("N")) {
-                
-                String evaluator = "";
-                while (!evaluator.equals("salida")) {
-                    String label = inputProperty();
-                    if (label != null) {
-                        u.createPopUp(label);
-                        System.out.println("Se creo su configuración para: ");
-                        evaluator = "salida";
+        System.out.println("Notificaciones para el usuario: " + u.getIDUser());
+
+        String n = "";
+        while (!n.equals("N")) {
+
+            String evaluator = "";
+            while (!evaluator.equals("salida")) {
+                String label = inputProperty();
+                if (label != null) {
+                    u.createPopUp(label);
+                    System.out.println("Se creo su configuración para: ");
+                    evaluator = "salida";
                     System.out.print("¿Desea configurar otra notificacion? Y/N:");
-                    n=scan.nextLine();
-                    } else {
-                        evaluator = "no";
-                        System.out.println("No existe la propiedad. Vuelva a intentarlo ");
-                    }
+                    n = scan.nextLine();
+                } else {
+                    evaluator = "no";
+                    System.out.println("No existe la propiedad. Vuelva a intentarlo ");
                 }
             }
+
         }
     }
 
