@@ -30,6 +30,13 @@ public abstract class PopUp {
     public String getLabel() {
         return label;
     }
+    public boolean getState(){
+        return state;
+    }
+    public void setState(boolean c){
+        state=c;
+    }
+    
     //addProp: Agrega las propiedades a la lista de PopUp para luego aplicarles un seteo
     public void addProp(Propiedad p) {
         propiedades.add(p);
