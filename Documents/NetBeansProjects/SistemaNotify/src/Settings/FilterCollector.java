@@ -32,5 +32,5 @@ public class FilterCollector {
     public int searchLabel(List<String> l, String s) {
         return l.indexOf(s) + 2;
     }
-
+   
 }

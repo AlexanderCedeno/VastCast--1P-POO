@@ -50,80 +50,29 @@ public class SistemaNotify {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException {
-
+//Creacion de oobjeto archivo para acceder al archivo que queremos leer.
         Archivo a = new Archivo();
         //a.leerTxt(ruta);iot_telemetry_data_new.csv
+        //CAMBIAR LA RUTA SI ES NECESARIO
         //String ruta="C:\\Users\\kevin\\Documents\\NetBeansProjects\\VastCast--1P-POO\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba compañeros
-        String ruta = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba Cedeño
-        a.leerTxt(ruta);
+        String rutaLeer = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba Cedeño
+        a.leerTxt(rutaLeer);
         List<String> datos = a.getData();
         FilterCollector filter = new FilterCollector();
 
+        //En este apartado vamos a extraer la cabecera y a crear los objetos de dispositivos y sus observaciones
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
         DevGenerator dg = new DevGenerator();
         //Crea lista con las propiedades en la cabecera
-        dg.propertiesExtractor(a.Linea(ruta).split(","), cabecera);
+        dg.propertiesExtractor(a.Linea(rutaLeer).split(","), cabecera);
         //Crea objetos a partir de la base de datos
-        dg.createObject(datos, devices, filter, cabecera, ruta);
+        dg.createObject(datos, devices, filter, cabecera, rutaLeer);
 
-       //Main menu = new Main();
-       //menu.menu(cabecera, devices);
-      //rangeDates();
-      
-      
-       
-     // Writer csvWrite=new Writer();
-     // csvWrite.writeCsv();
-       
-       System.out.printf( "%-30s  %-30s  %-10s%n", "STARBOY", "Yo Soy",  "Un Crack" );
-       
-       
-       
-//verificacion de filtros y creacion de objetos de tipo Device con sus respectivas observaciones 
-        /* for (Observation ob : observations) {
-            System.out.println(ob.getValue());
-        }*/
- List<PopUpObs> xObs=new ArrayList<>();
-        xObs.add(new PopUpObs("temp", "Peligro", 22.0, "1"));
-        xObs.add(new PopUpObs("light", "Peligro", "t"));
-        List<PopUpDev> dev=new ArrayList<>();
-        for (Device pr : devices) {
-            System.out.println(pr.getDevice());
-            for (PopUpObs obs:xObs){
-                PopUpDev clasico=new PopUpDev(obs.getLabel());
-                dev.add(clasico);
-                System.out.println(clasico.getLabel());
-                clasico.registerDev(pr);
-                clasico.use_xObs(obs);
-                System.out.println(clasico.setPopUp());
-                obs.setProp();
-            }                  
-                
-            }
+        //Ruta en donde se creará el archivo (CAMBIAR SI ES NECESARIO)
+        String rutaWrite="C:\\Users\\Walter Mix\\Documents\\Prueba.csv";
         
- /*User user1=new User("JuanFranciscoAlelio");
-        user1.createPopUp("motion");
-        for (PopUpObs po:user1.getPopUpObs()){
-        System.out.println(po.getLabel());
-        }*/
-        
-    }
-
-    public static void rangeDates() throws ParseException {
-        Writer generator= new Writer();
-        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println("Debe ingresar el rango de fechas con el siguiente formato dd/MM/yyyy");
-        System.out.print("Ingrese la fecha inicial dd/MM/yyyy: ");
-        Date initDate=format.parse(scan.nextLine());
-        System.out.print("Ingrese la fecha final dd/MM/yyyy: ");
-        Date endDate=format.parse(scan.nextLine());
-
-        LocalDate end = initDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate endLocalDate = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                System.out.println(end);
-        List<LocalDate> dates=generator.getRangeDates(end,endLocalDate);
-        System.out.println(dates);
-         
-
+         Main principal = new Main();
+         principal.menu(cabecera, devices,rutaWrite);
+             
     }
 }
