@@ -9,18 +9,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Iterator;
-import java.util.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 //Importar desde el paquete clase
 import Classes.Observation;
-import Classes.PopUp;
-import Classes.PopUpObs;
 import Classes.Propiedad;
 import Classes.User;
 import Classes.Device;
-import Classes.PopUpDev;
+
 //Importar desde el paquete Settings
 import Settings.Archivo;
 import Settings.FilterCollector;
@@ -71,6 +65,7 @@ public class SistemaNotify {
         //Ruta en donde se creará el archivo (CAMBIAR SI ES NECESARIO)
         String rutaWrite="C:\\Users\\Walter Mix\\Documents\\Prueba.csv";
         
+        //Se crea un objeto para inciar el menu del programa
          Main principal = new Main();
          principal.menu(cabecera, devices,rutaWrite);
              
