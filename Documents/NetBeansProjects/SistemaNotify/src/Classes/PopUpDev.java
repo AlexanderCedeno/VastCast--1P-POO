@@ -14,12 +14,13 @@ import java.util.List;
  */
 public class PopUpDev extends PopUp {
 
-    
+    private String priority;
     List<Device> devices;
     List<PopUpObs> xObs;
 
-    public PopUpDev(String l) {
+    public PopUpDev(String l, String p) {
         super(l);
+        priority=p;
         xObs = new ArrayList<>();
         devices=new ArrayList<>();
     }
@@ -32,7 +33,12 @@ public class PopUpDev extends PopUp {
         devices.add(d);
     }
     
-    
+    public void setD(){
+        devices.clear();
+    }
+    public String getP(){
+        return priority;
+    }
        
     //
     @Override
@@ -46,7 +52,7 @@ public class PopUpDev extends PopUp {
                     for (Observation o:pUp.setPopUp()){
                         obj.add(o);
                     }
-                    
+                    pUp.setProp();
                 });
             }
         }
