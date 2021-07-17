@@ -5,6 +5,8 @@
  */
 package Settings;
 
+import Classes.Device;
+import Classes.User;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -23,8 +26,8 @@ import java.util.List;
  */
 public class Writer {
     
-public void writeCsv(){
-   String salidaArchivo = "C:\\Users\\Walter Mix\\Desktop\\Examen\\Prueba.csv"; // Nombre del archivo
+public void writeCsv(User u){
+   String salidaArchivo = "C:\\Users\\Walter Mix\\Documents\\Prueba.csv"; // Nombre del archivo
         boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
         
         // Si existe un archivo llamado asi lo borra
@@ -35,12 +38,15 @@ public void writeCsv(){
         
         try {
             // Crea el archivo
-            BufferedWriter salidaCSV = new BufferedWriter(new FileWriter(salidaArchivo, true), ',');
-            
+            PrintWriter salidaCSV = new PrintWriter(new FileWriter(salidaArchivo, true));
+            if (u.getDevicesRoll().size()>0){
+                for (Device d:u.getDevicesRoll()){
+                
+            }}
             // Datos para identificar las columnas
-            salidaCSV.write("Nombreee ");
+            salidaCSV.printf( "%-30s  %-30s  %-10s%n", "", "NOTIFICACIONES",  "" );
             salidaCSV.write(System.getProperty( "line.separator" ));
-            salidaCSV.write("Telefono ");
+            salidaCSV.printf( "%-10s  %-1s%n ", "ID-Device:", "NOTIFICACIONES" );
             salidaCSV.write(System.getProperty( "line.separator" ));
             salidaCSV.write("Email ");
             

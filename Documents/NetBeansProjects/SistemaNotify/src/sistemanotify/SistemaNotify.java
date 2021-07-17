@@ -71,22 +71,11 @@ public class SistemaNotify {
       //rangeDates();
       
       
-       try 
-          {    
-                FileWriter fw=new FileWriter("C:\\Users\\Walter Mix\\Desktop\\Examen\\usuarios.csv", true);    
-                fw.write(System.getProperty( "line.separator" ));
-                fw.write(" Welcome to javaTpointoooooooooooo."); 
-                fw.write(System.getProperty( "line.separator" ));
-                fw.write(" Prueba."); 
-                fw.close();    
-          }
-          catch(Exception e){System.out.println(e);}    
-          System.out.println("Success...");   
        
-       Writer csvWrite=new Writer();
-       csvWrite.writeCsv();
+     // Writer csvWrite=new Writer();
+     // csvWrite.writeCsv();
        
-       
+       System.out.printf( "%-30s  %-30s  %-10s%n", "STARBOY", "Yo Soy",  "Un Crack" );
        
        
        
@@ -94,31 +83,30 @@ public class SistemaNotify {
         /* for (Observation ob : observations) {
             System.out.println(ob.getValue());
         }*/
- /*List<PopUpObs> xObs=new ArrayList<>();
+ List<PopUpObs> xObs=new ArrayList<>();
         xObs.add(new PopUpObs("temp", "Peligro", 22.0, "1"));
         xObs.add(new PopUpObs("light", "Peligro", "t"));
         List<PopUpDev> dev=new ArrayList<>();
         for (Device pr : devices) {
             System.out.println(pr.getDevice());
             for (PopUpObs obs:xObs){
-                PopUpDev clasico=new PopUpDev(obs.getLabel(),pr.getDevice());
+                PopUpDev clasico=new PopUpDev(obs.getLabel());
                 dev.add(clasico);
                 System.out.println(clasico.getLabel());
                 clasico.registerDev(pr);
                 clasico.use_xObs(obs);
                 System.out.println(clasico.setPopUp());
+                obs.setProp();
             }                  
                 
             }
-        }*/
+        
  /*User user1=new User("JuanFranciscoAlelio");
         user1.createPopUp("motion");
         for (PopUpObs po:user1.getPopUpObs()){
         System.out.println(po.getLabel());
         }*/
-        //registerUser();
-        // System.out.println(usuario.getIDUser());
-        // programmNotify();
+        
     }
 
     public static void rangeDates() throws ParseException {
