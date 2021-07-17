@@ -139,7 +139,6 @@ public class SistemaNotify {
     }
     }
     }*/
-
     public static Device inputDevice() {
         System.out.print("Ingrese su dispositivo :");
         String device = scan.nextLine();
@@ -183,12 +182,7 @@ public class SistemaNotify {
             opcion = scan.nextLine();
             switch (opcion) {
                 case "1":
-                    /*User user1=new User("JuanFranciscoAlelio");
-        user1.createPopUp("motion");
-        for (PopUpObs po:user1.getPopUpObs()){
-        System.out.println(po.getLabel());
-        }*/
-                    //depositar();
+                    programmNotify();
                     break;
                 case "2":
                     //retirar();
@@ -204,17 +198,24 @@ public class SistemaNotify {
     public static void programmNotify() {
 
         for (User u : users) {
-            String evaluator = "";
-            while (!evaluator.equals("salida")) {
-                String label = inputProperty();
-                if (label != null) {
-                    u.createPopUp(label);
-                    for (PopUpObs po : u.getPopUpObs()) {
-                        System.out.println(po.getLabel());
+            System.out.println("Notificaciones para el usuario: " + u.getIDUser());
+            
+            String n = "";
+            while (!n.equals("N")) {
+                
+                String evaluator = "";
+                while (!evaluator.equals("salida")) {
+                    String label = inputProperty();
+                    if (label != null) {
+                        u.createPopUp(label);
+                        System.out.println("Se creo su configuración para: ");
+                        evaluator = "salida";
+                    System.out.print("¿Desea configurar otra notificacion? Y/N:");
+                    n=scan.nextLine();
+                    } else {
+                        evaluator = "no";
+                        System.out.println("No existe la propiedad. Vuelva a intentarlo ");
                     }
-                    evaluator="salida";
-                } else {evaluator="no";
-                    System.out.println("No existe la propiedad. Vuelva a intentarlo ");
                 }
             }
         }
