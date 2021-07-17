@@ -42,7 +42,15 @@ public class User {
     public void enrollDev(Device d) {
         devices.add(d);
     }
-
+    
+    public void createPopUpDev(){
+         for (PopUpObs obs:xObs){
+                PopUpDev clasico=new PopUpDev(obs.getLabel());            
+                clasico.use_xObs(obs);
+                xDev.add(clasico);
+            }
+    }
+    
     public void createPopUp(String l) {
         Scanner sc = new Scanner(System.in);
         if (!l.equals("light") && !l.equals("motion")) {
