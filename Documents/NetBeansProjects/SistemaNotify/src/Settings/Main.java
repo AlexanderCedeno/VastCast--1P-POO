@@ -29,7 +29,7 @@ public class Main {
      * @param cabecera Cabecera que recibe el metodo
      * @param devices Lista de Dispositivos que recibe el metodo
      * @param rutaWrite Ruta donde se escribira el archivo a presentar
-     * @throws ParseException 
+     * @throws ParseException Usado para lanzar excepciones
      */
     public void menu(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String opcion = "";
@@ -120,7 +120,7 @@ public class Main {
      * @param cabecera Lista de string donde esta la cabecera del documento
      * @param devices Lista de dispositivos que recibe el metodo
      * @param rutaWrite Ruta donde se escribira el archivo a presentar
-     * @throws ParseException 
+     * @throws ParseException Usado para lanzar excepciones
      **/
     public void logIn(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String i = "";
@@ -251,7 +251,7 @@ public class Main {
      * @param usuario Usuario que recibe el metodo
      * @param devices Lista de dispositivos que recibe el metodo
      * @param rutaWrite Ruta donde se almacenara o escribira el archivo
-     * @throws ParseException 
+     * @throws ParseException Usado para lanzar excepciones
      **/
     public void generatePopUp(User usuario, List<Device> devices, String rutaWrite) throws ParseException {
         if (usuario.getPopUpObs().size() > 0) {

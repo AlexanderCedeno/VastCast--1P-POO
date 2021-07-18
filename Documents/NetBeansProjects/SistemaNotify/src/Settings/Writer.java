@@ -39,7 +39,7 @@ public class Writer {
      * @param u Usuario que recibe el metodo
      * @param devices Lista de dispositivos que recibe el metodo
      * @param ruta Ruta donde se encontrara el archivo
-     * @throws ParseException 
+     * @throws ParseException Usado para lanzar excepciones
      **/
     public void writeCsv(User u, List<Device> devices, String ruta) throws ParseException {
         String rutaSalida = ruta; // Ruta y Nombre del archivo
@@ -134,7 +134,7 @@ public class Writer {
     /**
      * metodo que pide los rangos de fechas que serán ingresados
      * @return List Lista donde estan los rangos de las fechas
-     * @throws ParseException 
+     * @throws ParseException Usado para lanzar excepciones
      **/
     public List<LocalDate> rangeDates() throws ParseException {
 
@@ -156,7 +156,7 @@ public class Writer {
      * metodo que transformara las fechas de las observaciones para filtrarlas
      * @param date Fecha extraida del documento que recibe el metodo
      * @return LocalDate Fecha transformada
-     * @throws ParseException 
+     * @throws ParseException Usado para lanzar excepciones
      **/
     public LocalDate transformDate(String date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -169,7 +169,7 @@ public class Writer {
      * @param date Lista con fechas que recibe el metodo
      * @param pop Lista con notificaciones de tipo Observacion
      * @param line Linea que recibe el metodo
-     * @throws ParseException 
+     * @throws ParseException Usado para lanzar excepciones
      **/
     public void filterDates(List<LocalDate> date, List<Observation> pop, PrintWriter line) throws ParseException {
         for (LocalDate dates : date) {

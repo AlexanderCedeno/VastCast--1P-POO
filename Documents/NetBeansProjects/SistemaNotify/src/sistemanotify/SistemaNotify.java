@@ -42,6 +42,7 @@ public class SistemaNotify {
 
     /**
      * @param args the command line arguments
+     * @throws ParseException Usado para lanzar excepciones
      */
     public static void main(String[] args) throws ParseException {
         //Creacion de oobjeto archivo para acceder al archivo que queremos leer.

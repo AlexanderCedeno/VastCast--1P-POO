@@ -26,6 +26,7 @@ public abstract class PopUp {
     }
     /**
      * metodo abstracto para configurar los requerimientos del usuario
+     * @return List Retorna lista de tipo observacion para las clases hijas
      **/
     public abstract List<Observation> setPopUp();
 

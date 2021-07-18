@@ -66,7 +66,7 @@ public class PopUpObs extends PopUp {
     
 /**
  * metodo que sirve para configurar las notificaciones y usa los valores dados por el usuario para comparar las observaciones
- * @return List<Observation> Lista de tipo Observacion
+ * @return List Lista de tipo Observacion
  **/
     @Override
     public List<Observation> setPopUp() {

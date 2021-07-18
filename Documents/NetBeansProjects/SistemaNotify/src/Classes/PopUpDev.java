@@ -47,7 +47,7 @@ public class PopUpDev extends PopUp {
     }
     /**
      * metodo que permite configurar las notificaciones por dispositivo
-     * @return List<Observation> Lista de tipo Observacion
+     * @return List Lista de tipo Observacion
      */
     @Override
     public List<Observation> setPopUp() {
