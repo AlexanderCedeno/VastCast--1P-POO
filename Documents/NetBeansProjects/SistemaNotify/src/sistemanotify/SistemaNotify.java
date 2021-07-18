@@ -61,7 +61,7 @@ public class SistemaNotify {
             System.out.println("No se ha encontrado el archivo, vuelva ha intentarlo");};  
         }
         System.out.println("Espere un momento por favor...");
-        //String rutaLeer = "iot_telemetry_data_new.csv";//Ruta para prueba Cedeño
+        //String rutaLeer = "files\\iot_telemetry_data_new.csv";//Ruta para prueba Cedeño
         a.leerTxt(rutaLeer);
         List<String> datos = a.getData();
         FilterCollector filter = new FilterCollector();
