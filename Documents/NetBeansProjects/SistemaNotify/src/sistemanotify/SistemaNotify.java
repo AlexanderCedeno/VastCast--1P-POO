@@ -46,14 +46,16 @@ public class SistemaNotify {
     public static void main(String[] args) throws ParseException {
 //Creacion de oobjeto archivo para acceder al archivo que queremos leer.
         Archivo a = new Archivo();
-        //a.leerTxt(ruta);iot_telemetry_data_new.csv
+
+        
         //CAMBIAR LA RUTA SI ES NECESARIO
-        //String ruta="C:\\Users\\kevin\\Documents\\NetBeansProjects\\VastCast--1P-POO\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba compañeros
-        String rutaLeer = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\muestra.txt";//Ruta para prueba Cedeño
+  
+        String rutaLeer = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv";//Ruta para prueba Cedeño
         a.leerTxt(rutaLeer);
         List<String> datos = a.getData();
         FilterCollector filter = new FilterCollector();
 
+        
         //En este apartado vamos a extraer la cabecera y a crear los objetos de dispositivos y sus observaciones
         //Crea una lista con todos los id_dispositivos para recorrer las observaciones
         DevGenerator dg = new DevGenerator();
@@ -63,11 +65,12 @@ public class SistemaNotify {
         dg.createObject(datos, devices, filter, cabecera, rutaLeer);
 
         //Ruta en donde se creará el archivo (CAMBIAR SI ES NECESARIO)
-        String rutaWrite="C:\\Users\\Walter Mix\\Documents\\Prueba.csv";
+        String rutaWrite = "C:\\Users\\Walter Mix\\Documents\\MisNotificaciones.csv";
+
         
         //Se crea un objeto para inciar el menu del programa
-         Main principal = new Main();
-         principal.menu(cabecera, devices,rutaWrite);
-             
+        Main principal = new Main();
+        principal.menu(cabecera, devices, rutaWrite);
+
     }
 }
