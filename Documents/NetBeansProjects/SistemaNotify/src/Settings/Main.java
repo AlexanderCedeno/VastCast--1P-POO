@@ -24,6 +24,7 @@ public class Main {
     public List<User> users = new ArrayList<>();
     Writer writeCSV = new Writer();
 
+    //menu: metodo creado para inicializar el menu principal del programa
     public void menu(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String opcion = "";
         while (!opcion.equals("3")) {
@@ -52,6 +53,7 @@ public class Main {
         }
     }
 
+    //inputDevice:valida si existen los dispisitivos ingresados por el usuario
     public Device inputDevice(List<Device> devices) {
         System.out.print("Ingrese su dispositivo :");
         String device = scan.nextLine();
@@ -64,6 +66,7 @@ public class Main {
         return null;
     }
 
+    //inputProperty: valida si la propiedad observable requerida existe
     public String inputProperty(List<String> cabecera) {
         System.out.print("Ingrese etiqueta de Propiedad. ('co','humidity', 'light', 'lpg', 'motion', 'smoke', 'temp )");
         String label = scan.nextLine();
@@ -76,6 +79,7 @@ public class Main {
         return null;
     }
 
+    //registerUser: permite registrar a los usuarios
     public void registerUser() {
         System.out.print("Ingrese id de usuario :");
         String userID = scan.nextLine();
@@ -84,6 +88,7 @@ public class Main {
         System.out.println("******Se ha registrado su usuario correctamente *******");
     }
 
+    //enterUser: valida si existe el nombre de usuario
     public User enterUser() {
         System.out.print("Ingrese su nombre de usuario: ");
         String nameUser = scan.nextLine();
@@ -96,6 +101,7 @@ public class Main {
         return null;
     }
 
+    //logIn: metodo para iniciar sesion
     public void logIn(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String i = "";
         User usuario = new User("inicializar");
@@ -138,6 +144,7 @@ public class Main {
         }
     }
 
+    //setPop: permite al usuario configurar las notificaiones por observacion
     public void setPop(User u, List<String> cabecera) {
         System.out.println("");
         System.out.println("Notificaciones para el usuario: " + u.getIDUser());
@@ -175,6 +182,7 @@ public class Main {
         }
     }
 
+    //enrollDevice: permite al usuario enrolarse a un dispositivo
     public void enrollDevice(List<Device> devices, User usuario) {
         System.out.println("");
         System.out.println("¿Desea registrar dispositivos en su cuenta? Y/N");
@@ -213,6 +221,7 @@ public class Main {
         }
     }
 
+    //generatePopUp: este metodo crea el archivo y escribe sobre el(Llama al metodo WriteCsv de la clase Writer)
     public void generatePopUp(User usuario, List<Device> devices, String rutaWrite) throws ParseException {
         if (usuario.getPopUpObs().size() > 0) {
             writeCSV.writeCsv(usuario, devices, rutaWrite);
@@ -221,6 +230,7 @@ public class Main {
         }
     }
 
+    //programmPop: permite configurar las notificaciones de acuerdo a su tipo(Por observacion o por Dispositivo)
     public void programmPop(User u, List<String> cabecera, List<Device> devices) {
         String opcion = "";
         while (!opcion.equals("3")) {
@@ -254,6 +264,7 @@ public class Main {
         }
     }
 
+    //unablePopUp: metodo creado para desactivar las notificaciones
     public void unablePopUp(User u) {
         String opcion = "";
         while (!opcion.equals("2")) {
@@ -283,11 +294,11 @@ public class Main {
                             }
                         }
                         System.out.println("Por favor vuelva a generar las notificaciones.");
-                    opcion="2";
+                        opcion = "2";
                     } else {
                         System.out.print("No cuenta con notificaciones activas");
                     }
-                    
+
                     break;
 
             }
