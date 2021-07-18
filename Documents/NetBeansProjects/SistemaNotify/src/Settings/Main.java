@@ -28,10 +28,9 @@ public class Main {
      * metodo creado para inicializar el menu principal del programa
      * @param cabecera Cabecera que recibe el metodo
      * @param devices Lista de Dispositivos que recibe el metodo
-     * @param rutaWrite Ruta donde se escribira el archivo a presentar
      * @throws ParseException Usado para lanzar excepciones
      */
-    public void menu(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
+    public void menu(List<String> cabecera, List<Device> devices) throws ParseException {
         String opcion = "";
         while (!opcion.equals("3")) {
             System.out.println("");
@@ -49,7 +48,7 @@ public class Main {
                     break;
                 case "2":
                     if (users.size() > 0) {
-                        logIn(cabecera, devices, rutaWrite);
+                        logIn(cabecera, devices);
                     } else {
                         System.out.println("Lo sentimos, no hay usuarios registrados");
                     }
@@ -119,10 +118,9 @@ public class Main {
      * metodo para iniciar sesion
      * @param cabecera Lista de string donde esta la cabecera del documento
      * @param devices Lista de dispositivos que recibe el metodo
-     * @param rutaWrite Ruta donde se escribira el archivo a presentar
      * @throws ParseException Usado para lanzar excepciones
      **/
-    public void logIn(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
+    public void logIn(List<String> cabecera, List<Device> devices) throws ParseException {
         String i = "";
         User usuario = new User("inicializar");
         while (!i.equals("correcto")) {
@@ -154,7 +152,7 @@ public class Main {
                     programmPop(usuario, cabecera, devices);
                     break;
                 case "2":
-                    generatePopUp(usuario, devices, rutaWrite);
+                    generatePopUp(usuario, devices);
                     break;
                 case "3":
                     unablePopUp(usuario);
@@ -253,9 +251,12 @@ public class Main {
      * @param rutaWrite Ruta donde se almacenara o escribira el archivo
      * @throws ParseException Usado para lanzar excepciones
      **/
-    public void generatePopUp(User usuario, List<Device> devices, String rutaWrite) throws ParseException {
+    public void generatePopUp(User usuario, List<Device> devices) throws ParseException {
         if (usuario.getPopUpObs().size() > 0) {
-            writeCSV.writeCsv(usuario, devices, rutaWrite);
+            System.out.println("Escriba la DIRECCION en la que desea guardar su archivo y NOMBRE del mismo"+'\n'+ "(Ejemplo:C:\\Users\\Walter Mix\\Documents\\Notificacion.csv)");
+            
+            String ruta=scan.nextLine();
+            writeCSV.writeCsv(usuario, devices, ruta);
         } else {
             System.out.println("NO HA CONFIGURADO NOTIFICACIONES AÚN...");
         }

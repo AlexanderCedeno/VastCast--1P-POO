@@ -48,10 +48,20 @@ public class SistemaNotify {
         //Creacion de oobjeto archivo para acceder al archivo que queremos leer.
         Archivo a = new Archivo();
 
-        
-        //CAMBIAR LA RUTA SI ES NECESARIO
-  
-        String rutaLeer = "C:\\Users\\Walter Mix\\Documents\\NetBeansProjects\\SistemaNotify\\src\\Settings\\iot_telemetry_data_new.csv";//Ruta para prueba Cedeño
+        System.out.println("Por favor introduzca la RUTA y NOMBRE de la DATA que quiere leer"+'\n'+ "(Ejemplo:C:\\Users\\Walter Mix\\Downloads\\iot_telemetry_data_new.csv)");
+        //Pide ruta de archivo a leer
+        System.out.print("Dirección:");
+        String n="";
+        String rutaLeer = null;
+        while(!n.equals("salir")){
+            rutaLeer = scan.nextLine();
+        if (a.validateRuta(rutaLeer)==true){
+            n="salir";
+        }else{n="";
+            System.out.println("No se ha encontrado el archivo, vuelva ha intentarlo");};  
+        }
+        System.out.println("Espere un momento por favor...");
+        //String rutaLeer = "iot_telemetry_data_new.csv";//Ruta para prueba Cedeño
         a.leerTxt(rutaLeer);
         List<String> datos = a.getData();
         FilterCollector filter = new FilterCollector();
@@ -66,12 +76,12 @@ public class SistemaNotify {
         dg.createObject(datos, devices, filter, cabecera, rutaLeer);
 
         //Ruta en donde se creará el archivo (CAMBIAR SI ES NECESARIO)
-        String rutaWrite = "C:\\Users\\Walter Mix\\Documents\\MisNotificaciones.csv";
+        //String rutaWrite = "C:\\Users\\Walter Mix\\Documents\\MisNotificaciones.csv";
 
         
         //Se crea un objeto para inciar el menu del programa
         Main principal = new Main();
-        principal.menu(cabecera, devices, rutaWrite);
+        principal.menu(cabecera, devices);
 
     }
 }

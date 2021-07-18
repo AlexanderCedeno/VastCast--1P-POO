@@ -32,7 +32,7 @@ public class Archivo {
             String linea = bufferedReader.readLine(); //permite escapar de la cabecera del archivo
             while ((linea = bufferedReader.readLine()) != null) {
                 // Lee línea por línea, omitiendo los saltos de línea
-                //stringBuilder.append(linea + "\n");
+               
                 data.add(linea.replace("\"", ""));
             }
 
@@ -52,6 +52,28 @@ public class Archivo {
         }
     }
 
+    public boolean validateRuta(String l) {
+        String fichero = l;
+        try {
+            FileReader fr = new FileReader(fichero);
+            BufferedReader br = new BufferedReader(fr);
+
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                 linea.replace("\"", "");
+                 return true;
+            }
+
+            fr.close();
+
+        } catch (Exception e) {
+            System.out.println("Excepcion leyendo fichero " + fichero + ": " + e);
+        }
+        return false;
+    }
+
+    
+    
     public List<String> getData() {
         return data;
     }
