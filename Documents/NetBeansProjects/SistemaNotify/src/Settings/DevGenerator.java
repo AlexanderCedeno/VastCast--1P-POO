@@ -18,8 +18,14 @@ import Settings.Archivo;
  * @author Gustavo Castro
  */
 public class DevGenerator {
-
-    //createObject: Crea los Dispositivos a partir de los datos dados en el csv
+    /**
+     * metodo que crea los Dispositivos a partir de los datos dados en el csv
+     * @param datos Lista de datos que recibe el metodo
+     * @param devices Lista de dispositivos que recibe el metodo
+     * @param filter Filtro que recibe el metodo
+     * @param cabecera Lista que almacena los string de la cabecera del archivo
+     * @param ruta Ruta o direccion donde se encuentra almacenado el documento
+     **/
     public void createObject(List<String> datos, List<Device> devices, FilterCollector filter, List<String> cabecera, String ruta) {
         List<String> idDev = new ArrayList<>();
         idDev = filter.collectorId(datos);
@@ -45,7 +51,12 @@ public class DevGenerator {
             devices.add(deviceN);
         }
     }
-    //propertiesExtractor: Extrae solo las propiedades a partir de la cabecera
+    /**
+     * metodo que extrae solo las propiedades a partir de la cabecera
+     * @param linea Array de string donde se almacena la linea del documento
+     * @param cabecera Lista donde se almacena la cabecera del documento para remover los elementos
+     **/
+    //propertiesExtractor: 
     public void propertiesExtractor(String[] linea, List<String> cabecera) {
         for (String cab : linea) {
             cabecera.add(cab);

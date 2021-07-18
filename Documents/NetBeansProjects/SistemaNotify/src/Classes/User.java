@@ -38,11 +38,16 @@ public class User {
     public List<PopUpDev> getPopUpDev() {
         return xDev;
     }
-
+    /**
+     * metodo que agrega a la lista los dispositivos que el usuario quiera enrolar
+     * @param d Dispositivo que recibe el metodo
+     */
     public void enrollDev(Device d) {
         devices.add(d);
     }
-    
+    /**
+     * metodo que crear notificacion de tipo Dispositivo
+     **/
     public void createPopUpDev(){
        
          for (PopUpObs obs:xObs){
@@ -51,7 +56,10 @@ public class User {
                 xDev.add(clasico);
                 }         
     }
-    
+    /**
+     * metodo que crea notificacion a partir de una etiqueta
+     * @param l Etiqueta que recibe el metodo
+     */
     public void createPopUp(String l) {
         Scanner sc = new Scanner(System.in);
         if (!l.equals("light") && !l.equals("motion")) {

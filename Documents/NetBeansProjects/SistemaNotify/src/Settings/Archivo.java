@@ -16,7 +16,10 @@ import java.util.Iterator;
 public class Archivo {
 
     private List<String> data = new ArrayList<>();
-    //leerTxt: metodo que permite leer las lineas del archivo csv
+    /**
+     * metodo que permite leer las lineas del archivo csv
+     * @param direccion Direccion donde se encuentra almacenado el archivo a leer
+     **/
     public void leerTxt(String direccion) {
         String nombreArchivo = direccion;
         FileReader fileReader = null;
@@ -52,8 +55,12 @@ public class Archivo {
     public List<String> getData() {
         return data;
     }
-//Itero: busca los elementos que se parecen y los elimina
-
+    /**
+     * metodo que busca los elementos que se parecen y los elimina
+     * @param l Lista de tipo String que recibe el metodo
+     * @param i Iterador
+     * @return List Retorna una lista de tipo String despues de remover los elementos que habia iterado
+     **/
     public List<String> IterO(List<String> l, String i) {
         Iterator<String> it = l.iterator();
         while (it.hasNext()) {
@@ -66,8 +73,11 @@ public class Archivo {
         }
         return l;
     }
-//Linea():Metodo usado para leer solo la cabecera 
-
+    /**
+     * Metodo usado para leer solo la cabecera 
+     * @param l Ruta donde se encuentra el archivo a leer
+     * @return String Una linea para guardar la cabecera
+     **/
     public String Linea(String l) {
         String fichero = l;
         try {

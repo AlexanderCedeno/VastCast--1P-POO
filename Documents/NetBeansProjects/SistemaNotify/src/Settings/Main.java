@@ -15,16 +15,22 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
- * @author Walter Mix
+ * @author Kevin Valle
+ * @author Kevin Cedeno
+ * @author Gustavo Castro
  */
 public class Main {
 
     public Scanner scan = new Scanner(System.in);
     public List<User> users = new ArrayList<>();
     Writer writeCSV = new Writer();
-
-    //menu: metodo creado para inicializar el menu principal del programa
+    /**
+     * metodo creado para inicializar el menu principal del programa
+     * @param cabecera Cabecera que recibe el metodo
+     * @param devices Lista de Dispositivos que recibe el metodo
+     * @param rutaWrite Ruta donde se escribira el archivo a presentar
+     * @throws ParseException 
+     */
     public void menu(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String opcion = "";
         while (!opcion.equals("3")) {
@@ -52,8 +58,11 @@ public class Main {
             }
         }
     }
-
-    //inputDevice:valida si existen los dispisitivos ingresados por el usuario
+    /**
+     * metodo que valida si existen los dispisitivos ingresados por el usuario
+     * @param devices Lista de dispositivos que recibe el metodo
+     * @return Device Objeto de tipo Device
+     **/
     public Device inputDevice(List<Device> devices) {
         System.out.print("Ingrese su dispositivo :");
         String device = scan.nextLine();
@@ -65,8 +74,11 @@ public class Main {
         }
         return null;
     }
-
-    //inputProperty: valida si la propiedad observable requerida existe
+    /**
+     * metodo que valida si la propiedad observable requerida existe
+     * @param cabecera Lista de string donde esta almacenada la cabecera
+     * @return String Propiedad que exista en el documento
+     **/
     public String inputProperty(List<String> cabecera) {
         System.out.print("Ingrese etiqueta de Propiedad. ('co','humidity', 'light', 'lpg', 'motion', 'smoke', 'temp )");
         String label = scan.nextLine();
@@ -78,8 +90,9 @@ public class Main {
         }
         return null;
     }
-
-    //registerUser: permite registrar a los usuarios
+    /**
+     * metodo que permite registrar a los usuarios
+     **/
     public void registerUser() {
         System.out.print("Ingrese id de usuario :");
         String userID = scan.nextLine();
@@ -87,8 +100,10 @@ public class Main {
         users.add(new User(userID));
         System.out.println("******Se ha registrado su usuario correctamente *******");
     }
-
-    //enterUser: valida si existe el nombre de usuario
+    /**
+     * metodo que valida si existe el nombre de usuario
+     * @return User Usuario que retorna el metodo
+     **/
     public User enterUser() {
         System.out.print("Ingrese su nombre de usuario: ");
         String nameUser = scan.nextLine();
@@ -100,8 +115,13 @@ public class Main {
         }
         return null;
     }
-
-    //logIn: metodo para iniciar sesion
+    /**
+     * metodo para iniciar sesion
+     * @param cabecera Lista de string donde esta la cabecera del documento
+     * @param devices Lista de dispositivos que recibe el metodo
+     * @param rutaWrite Ruta donde se escribira el archivo a presentar
+     * @throws ParseException 
+     **/
     public void logIn(List<String> cabecera, List<Device> devices, String rutaWrite) throws ParseException {
         String i = "";
         User usuario = new User("inicializar");
@@ -143,8 +163,11 @@ public class Main {
             }
         }
     }
-
-    //setPop: permite al usuario configurar las notificaiones por observacion
+    /**
+     * metodo que permite al usuario configurar las notificaiones por observacion
+     * @param u Usuario que recibe el metodo
+     * @param cabecera Lista de String donde esta la cabecera del documento
+     **/
     public void setPop(User u, List<String> cabecera) {
         System.out.println("");
         System.out.println("Notificaciones para el usuario: " + u.getIDUser());
@@ -181,8 +204,11 @@ public class Main {
 
         }
     }
-
-    //enrollDevice: permite al usuario enrolarse a un dispositivo
+    /**
+     * metodo que permite al usuario enrolarse a un dispositivo
+     * @param devices Lista de Dispositivos
+     * @param usuario Usuario que recibe el metodo
+     **/
     public void enrollDevice(List<Device> devices, User usuario) {
         System.out.println("");
         System.out.println("¿Desea registrar dispositivos en su cuenta? Y/N");
@@ -220,8 +246,13 @@ public class Main {
             System.out.println("De acuerdo...No ha registrado ningun dispositivo");
         }
     }
-
-    //generatePopUp: este metodo crea el archivo y escribe sobre el(Llama al metodo WriteCsv de la clase Writer)
+    /**
+     * metodo crea el archivo y escribe sobre el(Llama al metodo WriteCsv de la clase Writer)
+     * @param usuario Usuario que recibe el metodo
+     * @param devices Lista de dispositivos que recibe el metodo
+     * @param rutaWrite Ruta donde se almacenara o escribira el archivo
+     * @throws ParseException 
+     **/
     public void generatePopUp(User usuario, List<Device> devices, String rutaWrite) throws ParseException {
         if (usuario.getPopUpObs().size() > 0) {
             writeCSV.writeCsv(usuario, devices, rutaWrite);
@@ -229,8 +260,12 @@ public class Main {
             System.out.println("NO HA CONFIGURADO NOTIFICACIONES AÚN...");
         }
     }
-
-    //programmPop: permite configurar las notificaciones de acuerdo a su tipo(Por observacion o por Dispositivo)
+    /**
+     * metodo que permite configurar las notificaciones de acuerdo a su tipo(Por observacion o por Dispositivo)
+     * @param u Usuario que recibe el metodo
+     * @param cabecera Lista de string donde esta la cabecera del documento
+     * @param devices Lista de dispositivos que recibe el metodo
+     **/
     public void programmPop(User u, List<String> cabecera, List<Device> devices) {
         String opcion = "";
         while (!opcion.equals("3")) {
@@ -263,8 +298,10 @@ public class Main {
             }
         }
     }
-
-    //unablePopUp: metodo creado para desactivar las notificaciones
+    /**
+     * metodo creado para desactivar las notificaciones
+     * @param u Usuario que recibe el metodo
+     **/
     public void unablePopUp(User u) {
         String opcion = "";
         while (!opcion.equals("2")) {

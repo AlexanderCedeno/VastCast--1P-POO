@@ -18,7 +18,10 @@ public class Device {
         idDevice = id;
         propiedades = new ArrayList<>();
     }
-    //evaluarProp: Agrega las propiedades a la lista de cada Dispositivo
+    /**
+    * Agrega las propiedades a la lista de cada Dispositivo
+    * @param p Propiedad que recibe el metodo
+    **/
     public void evaluarProp(Propiedad p) {
         propiedades.add(p);
     }

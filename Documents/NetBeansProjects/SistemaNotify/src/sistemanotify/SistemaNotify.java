@@ -44,7 +44,7 @@ public class SistemaNotify {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException {
-//Creacion de oobjeto archivo para acceder al archivo que queremos leer.
+        //Creacion de oobjeto archivo para acceder al archivo que queremos leer.
         Archivo a = new Archivo();
 
         

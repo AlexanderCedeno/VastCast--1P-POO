@@ -24,11 +24,17 @@ public class PopUpDev extends PopUp {
         xObs = new ArrayList<>();
         devices=new ArrayList<>();
     }
-    //use_xObs: metodo que usa las notificaciones por observacion y las agrega a la lista xObs
+    /**
+     * metodo que usa las notificaciones por observacion y las agrega a la lista xObs
+     * @param Obs Notificacion de tipo Observacion que recibe el metodo
+     **/
     public void use_xObs(PopUpObs Obs) {
         xObs.add(Obs);
     }
-    //registerDev: metodo que agrega los dispositivos registrados por el usuario
+    /**
+     * metodo que agrega los dispositivos registrados por el usuario
+     * @param d Dispositivo que recibe el metodo
+     **/
     public void registerDev(Device d) {
         devices.add(d);
     }
@@ -39,8 +45,10 @@ public class PopUpDev extends PopUp {
     public String getP(){
         return priority;
     }
-       
-    //
+    /**
+     * metodo que permite configurar las notificaciones por dispositivo
+     * @return List<Observation> Lista de tipo Observacion
+     */
     @Override
     public List<Observation> setPopUp() {
         List<Observation> obj =new ArrayList<>();

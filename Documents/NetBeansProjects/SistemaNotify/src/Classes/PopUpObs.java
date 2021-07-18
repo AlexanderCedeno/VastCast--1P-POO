@@ -20,7 +20,14 @@ public class PopUpObs extends PopUp {
     private String input;
     
 //sobrecarga de constructores
-//PopUpObs (1): constructor de 5 parametros que sera usado para crear notificaciones en un rango de maximos y minimos
+/**
+ * constructor de 5 parametros que sera usado para crear notificaciones en un rango de maximos y minimos
+ * @param l Etiqueta
+ * @param p Prioridad
+ * @param vM Valor maximo
+ * @param vMi Valor minimo
+ * @param input Ingreso del usuario
+ **/
     public PopUpObs(String l, String p, double vM, double vMi, String input) {
         super(l);
         priority = p;
@@ -28,16 +35,25 @@ public class PopUpObs extends PopUp {
         valueMin = vMi;
         this.input=input;
     }
-//PopUpObs (2): constructor de 4 parametros que sera usado para comparar con un unico valor en las observaciones
-
+/**
+ * constructor de 4 parametros que sera usado para comparar con un unico valor en las observaciones
+ * @param l Etiqueta
+ * @param p Prioridad
+ * @param vM Valor maximo
+ * @param input Ingreso del usuario
+ **/
     public PopUpObs(String l, String p, double vM, String input) {
         super(l);
         priority = p;
         valueMax = vM;
         this.input=input;
     }
-//PopUpObs (3): constructor para las propiedades con datos booleanos (true/false)
-
+/**
+ * constructor para las propiedades con datos booleanos (true/false)
+ * @param l Etiqueta
+ * @param p Prioridad
+ * @param input Ingreso del usuario
+ **/
     public PopUpObs(String l, String p, String input) {
         super(l);
         priority = p;
@@ -48,8 +64,10 @@ public class PopUpObs extends PopUp {
         return priority;
     }
     
-    
-//setPopUp: metodo que sirve para configurar las notificaciones y usa los valores dados por el usuario para comparar las observaciones
+/**
+ * metodo que sirve para configurar las notificaciones y usa los valores dados por el usuario para comparar las observaciones
+ * @return List<Observation> Lista de tipo Observacion
+ **/
     @Override
     public List<Observation> setPopUp() {
         List<Observation> obj = null;

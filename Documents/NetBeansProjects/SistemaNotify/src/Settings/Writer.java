@@ -34,8 +34,13 @@ import java.util.logging.Logger;
 public class Writer {
 
     Scanner scan1 = new Scanner(System.in);
-
-    //WriteCsv: metodo que creara un nuevo archivo y escribira las observaciones 
+    /**
+     * metodo que creara un nuevo archivo y escribira las observaciones
+     * @param u Usuario que recibe el metodo
+     * @param devices Lista de dispositivos que recibe el metodo
+     * @param ruta Ruta donde se encontrara el archivo
+     * @throws ParseException 
+     **/
     public void writeCsv(User u, List<Device> devices, String ruta) throws ParseException {
         String rutaSalida = ruta; // Ruta y Nombre del archivo
         boolean ex = new File(rutaSalida).exists(); // Verifica si existe
@@ -117,13 +122,20 @@ public class Writer {
             e.printStackTrace();
         }
     }
-
-    //GetRangeDates: metodo que arma una lista con los rangos en las fechas dadas
+    /**
+     * metodo que arma una lista con los rangos en las fechas dadas
+     * @param initDate Fecha inicial de tipo localDate
+     * @param endDate Fecha final de tipo LocalDate
+     * @return List Lista donde estan los rangos de las fechas que recibe el metodo
+     **/
     public List<LocalDate> getRangeDates(LocalDate initDate, LocalDate endDate) {
         return initDate.datesUntil(endDate.plusDays(1)).collect(Collectors.toList());
     }
-
-    //rangeDates: metodo que pide los rangos de fechas que serán ingresados.
+    /**
+     * metodo que pide los rangos de fechas que serán ingresados
+     * @return List Lista donde estan los rangos de las fechas
+     * @throws ParseException 
+     **/
     public List<LocalDate> rangeDates() throws ParseException {
 
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -140,16 +152,25 @@ public class Writer {
         return dates;
 
     }
-
-    //transformDate: metodo que transformara las fechas de las observaciones para fitlrarlas 
+    /**
+     * metodo que transformara las fechas de las observaciones para filtrarlas
+     * @param date Fecha extraida del documento que recibe el metodo
+     * @return LocalDate Fecha transformada
+     * @throws ParseException 
+     **/
     public LocalDate transformDate(String date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date toTransform = format.parse(date);
         LocalDate newDate = toTransform.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         return newDate;
     }
-
-    //filterDates:metodo que filtra las fechas y escribe las coincidencias
+    /**
+     * metodo que filtra las fechas y escribe las coincidencias
+     * @param date Lista con fechas que recibe el metodo
+     * @param pop Lista con notificaciones de tipo Observacion
+     * @param line Linea que recibe el metodo
+     * @throws ParseException 
+     **/
     public void filterDates(List<LocalDate> date, List<Observation> pop, PrintWriter line) throws ParseException {
         for (LocalDate dates : date) {
             for (Observation o : pop) {

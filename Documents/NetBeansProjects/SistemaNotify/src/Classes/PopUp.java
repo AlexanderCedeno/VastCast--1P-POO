@@ -24,7 +24,9 @@ public abstract class PopUp {
         state = true;
         propiedades = new ArrayList<>();
     }
-    //setPopUp: metodo abstracto para configurar los requerimientos del usuario
+    /**
+     * metodo abstracto para configurar los requerimientos del usuario
+     **/
     public abstract List<Observation> setPopUp();
 
     public String getLabel() {
@@ -36,8 +38,10 @@ public abstract class PopUp {
     public void setState(boolean c){
         state=c;
     }
-    
-    //addProp: Agrega las propiedades a la lista de PopUp para luego aplicarles un seteo
+    /**
+     * Agrega las propiedades a la lista de PopUp para luego aplicarles un seteo
+     * @param p Propiedad que recibe el metodo
+     **/
     public void addProp(Propiedad p) {
         propiedades.add(p);
     }
