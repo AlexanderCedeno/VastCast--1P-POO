@@ -1,5 +1,5 @@
 # VastCast--1P-POO
-***Ignorar carpeta APPDATA****En caso de que no lea el archivo verificar las rutas en la clase SistemaNotify y cambiar.
+***Ignorar carpeta APPDATA**** cuando genere las notificaciones debe introducir una ruta. Sin embargo, si solo introduce el nombre del archivo con su extención ".csv" guardará un archivo en la misma carpeta que se corre el programa.
 _____________________________________________________
 Grupo 6 Parcial numero 1
 miembros//----
